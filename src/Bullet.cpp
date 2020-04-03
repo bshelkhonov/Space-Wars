@@ -2,13 +2,7 @@
 #include "Settings.hpp"
 
 
-Bullet::Bullet() {
-//    auto texture = new sf::Texture();
-//    texture->loadFromFile(BULLET_FILE_1);
-//    sprite_.setTexture(*texture);
-//    sprite_.setTextureRect(sf::IntRect(376, 316, 37, 11));
-//    sprite_.setColor(sf::Color::Green);
-}
+Bullet::Bullet() = default;
 
 
 void Bullet::setSprite(const sf::Sprite& sprite) {
