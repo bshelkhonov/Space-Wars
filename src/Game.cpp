@@ -17,17 +17,6 @@ Game::~Game() {
 }
 
 
-void Game::buttonPressed_() {
-//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-//        player_.move_up_(clock_.getElapsedTime().asSeconds());
-//    }
-//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-//        player_.move_down_(clock_.getElapsedTime().asSeconds());
-//    }
-}
-
-
-
 void Game::run() {
     player_.reset_clock();
     while (window_.isOpen()) {
