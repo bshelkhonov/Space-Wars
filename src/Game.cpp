@@ -29,7 +29,6 @@ void Game::buttonPressed_() {
 
 
 void Game::run() {
-    Bullet bullet;
     player_.reset_clock();
     while (window_.isOpen()) {
         clock_.restart();
@@ -41,12 +40,10 @@ void Game::run() {
                 window_.close();
         }
 
-//        buttonPressed_();
         player_.action();
 
         window_.clear();
         window_.draw(background_);
-        bullet.draw(window_);
         player_.draw(window_);
         window_.display();
     }

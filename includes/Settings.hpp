@@ -16,7 +16,8 @@ const sf::Vector2f PLAYER_MIN_POS = {50, 30};
 const sf::Vector2f PLAYER_MAX_POS = {50, 678};
 const sf::Vector2f PLAYER_MOVE_UP = {0, -760};
 const sf::Vector2f PLAYER_MOVE_DOWN = {0, 760};
-const float PLAYER_DEFAULT_GUN_RELOAD = 1.f;
+const float PLAYER_DEFAULT_GUN_RELOAD = 0.1f;
+const sf::Vector2f PLAYER_DEFAULT_BULLET_VELOCITY = {500, 0};
 
 const std::string BACKGROUND_FILE = "../resources/images/sky1.png";
 const std::string PLAYER_FILE =  "../resources/images/airship.png";

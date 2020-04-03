@@ -16,9 +16,6 @@ private:
     sf::Sprite background_;
     Player player_;
 
-//    std::list<Bullet> player_bullets_;
-//    std::list<Bullet> enemy_bullets_;
-
     void buttonPressed_();
 
 public:

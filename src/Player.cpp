@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-Player::Player() : last_time_move_(0), last_time_shooting_(-200) {
+Player::Player() : last_time_move_(0), gun_(new Gun()) {
     auto texture = new sf::Texture();
     texture->loadFromFile(PLAYER_FILE);
     sprite_.setTexture(*texture);
@@ -38,7 +38,10 @@ void Player::move_down_() {
 
 
 void Player::shoot_() {
-    gun_->shoot();
+    for (auto& bullet : gun_->shoot()) {
+        bullet.setPosition(sprite_.getPosition());
+        bullets_.push_front(bullet);
+    }
 }
 
 
@@ -61,12 +64,16 @@ void Player::action() {
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         shoot_();
+    for (auto& bullet : bullets_)
+        bullet.move();
     update_time_();
 }
 
 
 void Player::draw(sf::RenderWindow& window) {
     window.draw(sprite_);
+    for (auto& bullet : bullets_)
+        bullet.draw(window);
 }
 
 

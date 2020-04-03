@@ -2,11 +2,13 @@
 #define SPACE_WARS_PLAYER_HPP
 
 
-#include "IGun.hpp"
+#include "Gun.hpp"
 #include "IDrawable.hpp"
+#include "Bullet.hpp"
 #include "SFML/Graphics.hpp"
 #include <cstdint>
 #include <memory>
+#include <list>
 
 
 class Player : public IDrawable {
@@ -15,7 +17,9 @@ private:
 
     sf::Clock clock_;
 
-    std::shared_ptr<IGun> gun_;
+    std::shared_ptr<Gun> gun_;
+
+    std::list<Bullet> bullets_;
 
     float last_time_move_;
 
