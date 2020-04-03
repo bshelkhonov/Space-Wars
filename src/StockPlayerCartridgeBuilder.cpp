@@ -1,8 +1,8 @@
-#include "PlayerCartridgeBuilder.hpp"
+#include "StockPlayerCartridgeBuilder.hpp"
 #include "Settings.hpp"
 
 
-PlayerCartridgeBuilder::PlayerCartridgeBuilder() : ICartridgeBuilder() {
+StockPlayerCartridgeBuilder::StockPlayerCartridgeBuilder() : ICartridgeBuilder() {
     auto texture = new sf::Texture();
     texture->loadFromFile(BULLET_FILE_1);
     sprite_.setTexture(*texture);
@@ -12,17 +12,17 @@ PlayerCartridgeBuilder::PlayerCartridgeBuilder() : ICartridgeBuilder() {
 }
 
 
-void PlayerCartridgeBuilder::create_cartridge() {
+void StockPlayerCartridgeBuilder::create_cartridge() {
     cartridge_.reset(new Cartridge(1));
 }
 
 
-void PlayerCartridgeBuilder::setSprite() {
+void StockPlayerCartridgeBuilder::setSprite() {
     cartridge_->front().setSprite(sprite_);
 }
 
 
-void PlayerCartridgeBuilder::setVelocity() {
+void StockPlayerCartridgeBuilder::setVelocity() {
     cartridge_->front().setVelocity(PLAYER_DEFAULT_BULLET_VELOCITY);
 }
 

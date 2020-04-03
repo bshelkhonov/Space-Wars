@@ -17,11 +17,13 @@ const size_t SCREEN_HEIGHT = 768;
 const sf::Vector2f PLAYER_SPRITE_SCALE = {0.13, 0.13};
 const sf::Vector2f PLAYER_DEFAULT_POS = {50, 360};
 const sf::Vector2f PLAYER_MIN_POS = {50, 30};
-const sf::Vector2f PLAYER_MAX_POS = {50, 678};
-const sf::Vector2f PLAYER_MOVE_UP = {0, -760};
-const sf::Vector2f PLAYER_MOVE_DOWN = {0, 760};
+const sf::Vector2f PLAYER_MAX_POS = {1000, 678};
+const sf::Vector2f PLAYER_MOVE_UP_SPEED = {0, -760};
+const sf::Vector2f PLAYER_MOVE_DOWN_SPEED = {0, 760};
+const sf::Vector2f PLAYER_MOVE_LEFT_SPEED = {-500, 0};
+const sf::Vector2f PLAYER_MOVE_RIGHT_SPEED = {500, 0};
 const float PLAYER_DEFAULT_GUN_RELOAD = 0.1f;
-const sf::Vector2f PLAYER_DEFAULT_BULLET_VELOCITY = {500, 0};
+const sf::Vector2f PLAYER_DEFAULT_BULLET_VELOCITY = {600, 0};
 
 // RESOURCES
 

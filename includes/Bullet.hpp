@@ -24,11 +24,15 @@ public:
 
     void setVelocity(const sf::Vector2f&);
 
-    void setPosition(const sf::Vector2f&);
+    void setPosition(const sf::Vector2f&) override;
 
     void move();
 
     void draw(sf::RenderWindow&) override;
+
+    void move(const sf::Vector2f&) override {} // TODO
+
+    sf::Vector2f getPosition() const override {} // TODO
 };
 
 

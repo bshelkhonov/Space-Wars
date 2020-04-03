@@ -9,7 +9,7 @@
 // class for moving IDrawables
 class IObjectMover {
 public:
-    virtual void move(std::shared_ptr<IDrawable*>) = 0;
+    virtual void move(IDrawable&) = 0;
 };
 
 

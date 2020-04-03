@@ -5,6 +5,7 @@
 #include "Gun.hpp"
 #include "IDrawable.hpp"
 #include "Bullet.hpp"
+#include "IObjectMover.hpp"
 #include "SFML/Graphics.hpp"
 #include <cstdint>
 #include <memory>
@@ -18,6 +19,8 @@ private:
     sf::Clock clock_;
 
     std::shared_ptr<Gun> gun_;
+
+    std::shared_ptr<IObjectMover> mover_;
 
     std::list<Bullet> bullets_;
 
@@ -45,6 +48,12 @@ public:
     void action();
 
     void draw(sf::RenderWindow&) override;
+
+    void move(const sf::Vector2f&) override;
+
+    sf::Vector2f getPosition() const override;
+
+    void setPosition(const sf::Vector2f&) override;
 };
 
 

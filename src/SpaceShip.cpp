@@ -1,9 +1,10 @@
 #include "SpaceShip.hpp"
 #include "Settings.hpp"
+#include "PlayerMover.hpp"
 #include <iostream>
 
 
-SpaceShip::SpaceShip() : last_time_move_(0), gun_(new Gun()), offset_(80, 40) {
+SpaceShip::SpaceShip() : last_time_move_(0), gun_(new Gun()), offset_(80, 40), mover_(new PlayerMover()) {
     auto texture = new sf::Texture();
     texture->loadFromFile(PLAYER_FILE);
     sprite_.setTexture(*texture);
@@ -23,14 +24,14 @@ float SpaceShip::get_delta_time_() const {
 
 
 void SpaceShip::move_up_() {
-    sprite_.move(PLAYER_MOVE_UP * get_delta_time_());
+    sprite_.move(PLAYER_MOVE_UP_SPEED * get_delta_time_());
     if (sprite_.getPosition().y < PLAYER_MIN_POS.y)
         sprite_.setPosition(PLAYER_MIN_POS);
     update_time_();
 }
 
 void SpaceShip::move_down_() {
-    sprite_.move(PLAYER_MOVE_DOWN * get_delta_time_());
+    sprite_.move(PLAYER_MOVE_DOWN_SPEED * get_delta_time_());
     if (sprite_.getPosition().y > PLAYER_MAX_POS.y)
         sprite_.setPosition(PLAYER_MAX_POS);
     update_time_();
@@ -56,11 +57,12 @@ void SpaceShip::reset_clock() {
 
 
 void SpaceShip::action() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        move_up_();
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        move_down_();
+    mover_->move(*this);
+//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+//        move_up_();
+//
+//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+//        move_down_();
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         shoot_();
@@ -70,11 +72,27 @@ void SpaceShip::action() {
 }
 
 
+void SpaceShip::move(const sf::Vector2f& movement) {
+    sprite_.move(movement);
+}
+
+
 void SpaceShip::draw(sf::RenderWindow& window) {
     window.draw(sprite_);
     for (auto& bullet : bullets_)
         bullet.draw(window);
 }
+
+
+sf::Vector2f SpaceShip::getPosition() const {
+    return sprite_.getPosition();
+}
+
+
+void SpaceShip::setPosition(const sf::Vector2f& pos) {
+    sprite_.setPosition(pos);
+}
+
 
 
 

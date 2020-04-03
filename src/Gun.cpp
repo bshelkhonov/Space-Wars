@@ -1,10 +1,10 @@
 #include "Gun.hpp"
-#include "PlayerCartridgeBuilder.hpp"
+#include "StockPlayerCartridgeBuilder.hpp"
 #include "Settings.hpp"
 
 
 Gun::Gun() : reload_time_(PLAYER_DEFAULT_GUN_RELOAD),
-             builder_(dynamic_cast<ICartridgeBuilder*>(new PlayerCartridgeBuilder())) {}
+             builder_(dynamic_cast<ICartridgeBuilder*>(new StockPlayerCartridgeBuilder())) {}
 
 
 Cartridge Gun::create_bullet_() {
