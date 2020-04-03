@@ -1,5 +1,5 @@
-#ifndef SPACE_WARS_PLAYER_HPP
-#define SPACE_WARS_PLAYER_HPP
+#ifndef SPACE_WARS_SPACESHIP_HPP
+#define SPACE_WARS_SPACESHIP_HPP
 
 
 #include "Gun.hpp"
@@ -11,7 +11,7 @@
 #include <list>
 
 
-class Player : public IDrawable {
+class SpaceShip : public IDrawable {
 private:
     sf::Sprite sprite_;
 
@@ -22,6 +22,8 @@ private:
     std::list<Bullet> bullets_;
 
     float last_time_move_;
+
+    sf::Vector2f offset_;
 
     float get_delta_time_() const;
 
@@ -34,9 +36,9 @@ private:
     void update_time_();
 
 public:
-    Player();
+    SpaceShip();
 
-    ~Player();
+    ~SpaceShip();
 
     void reset_clock();
 
@@ -46,4 +48,4 @@ public:
 };
 
 
-#endif //SPACE_WARS_PLAYER_HPP
+#endif //SPACE_WARS_SPACESHIP_HPP

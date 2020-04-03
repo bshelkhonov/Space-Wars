@@ -1,9 +1,9 @@
-#include "Player.hpp"
+#include "SpaceShip.hpp"
 #include "Settings.hpp"
 #include <iostream>
 
 
-Player::Player() : last_time_move_(0), gun_(new Gun()) {
+SpaceShip::SpaceShip() : last_time_move_(0), gun_(new Gun()), offset_(80, 40) {
     auto texture = new sf::Texture();
     texture->loadFromFile(PLAYER_FILE);
     sprite_.setTexture(*texture);
@@ -12,24 +12,24 @@ Player::Player() : last_time_move_(0), gun_(new Gun()) {
 }
 
 
-Player::~Player() {
+SpaceShip::~SpaceShip() {
     delete sprite_.getTexture();
 }
 
 
-float Player::get_delta_time_() const {
+float SpaceShip::get_delta_time_() const {
     return clock_.getElapsedTime().asSeconds() - last_time_move_;
 }
 
 
-void Player::move_up_() {
+void SpaceShip::move_up_() {
     sprite_.move(PLAYER_MOVE_UP * get_delta_time_());
     if (sprite_.getPosition().y < PLAYER_MIN_POS.y)
         sprite_.setPosition(PLAYER_MIN_POS);
     update_time_();
 }
 
-void Player::move_down_() {
+void SpaceShip::move_down_() {
     sprite_.move(PLAYER_MOVE_DOWN * get_delta_time_());
     if (sprite_.getPosition().y > PLAYER_MAX_POS.y)
         sprite_.setPosition(PLAYER_MAX_POS);
@@ -37,25 +37,25 @@ void Player::move_down_() {
 }
 
 
-void Player::shoot_() {
+void SpaceShip::shoot_() {
     for (auto& bullet : gun_->shoot()) {
-        bullet.setPosition(sprite_.getPosition());
+        bullet.setPosition(sprite_.getPosition() + offset_);
         bullets_.push_front(bullet);
     }
 }
 
 
-void Player::update_time_() {
+void SpaceShip::update_time_() {
     last_time_move_ = clock_.getElapsedTime().asSeconds();
 }
 
 
-void Player::reset_clock() {
+void SpaceShip::reset_clock() {
     update_time_();
 }
 
 
-void Player::action() {
+void SpaceShip::action() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         move_up_();
 
@@ -70,7 +70,7 @@ void Player::action() {
 }
 
 
-void Player::draw(sf::RenderWindow& window) {
+void SpaceShip::draw(sf::RenderWindow& window) {
     window.draw(sprite_);
     for (auto& bullet : bullets_)
         bullet.draw(window);
