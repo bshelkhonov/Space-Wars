@@ -1,7 +1,6 @@
 #include "Game.hpp"
 #include "Settings.hpp"
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 
 Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close) {

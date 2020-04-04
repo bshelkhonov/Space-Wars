@@ -2,7 +2,7 @@
 #define SPACE_WARS_SPACESHIP_HPP
 
 
-#include "Gun.hpp"
+#include "IGun.hpp"
 #include "IDrawable.hpp"
 #include "Bullet.hpp"
 #include "IObjectMover.hpp"
@@ -18,7 +18,7 @@ private:
 
     sf::Clock clock_;
 
-    std::shared_ptr<Gun> gun_;
+    std::shared_ptr<IGun> gun_;
 
     std::shared_ptr<IObjectMover> mover_;
 
@@ -27,12 +27,6 @@ private:
     float last_time_move_;
 
     sf::Vector2f offset_;
-
-    float get_delta_time_() const;
-
-    void move_up_();
-
-    void move_down_();
 
     void shoot_();
 

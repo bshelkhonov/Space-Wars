@@ -20,15 +20,13 @@ private:
 
     void move_right_(IDrawable&) const;
 
-    float get_current_time_() const;
+    [[nodiscard]] float get_current_time_() const;
 
     void update_clock_();
 
 public:
 
     void move(IDrawable&) override;
-
-
 };
 
 #endif //SPACE_WARS_PLAYERMOVER_HPP

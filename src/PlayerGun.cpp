@@ -1,13 +1,13 @@
-#include "Gun.hpp"
+#include "PlayerGun.hpp"
 #include "StockPlayerCartridgeBuilder.hpp"
 #include "Settings.hpp"
 
 
-Gun::Gun() : reload_time_(PLAYER_DEFAULT_GUN_RELOAD),
-             builder_(dynamic_cast<ICartridgeBuilder*>(new StockPlayerCartridgeBuilder())) {}
+PlayerGun::PlayerGun() : IGun(), reload_time_(PLAYER_DEFAULT_GUN_RELOAD),
+                         builder_(dynamic_cast<ICartridgeBuilder*>(new StockPlayerCartridgeBuilder())) {}
 
 
-Cartridge Gun::create_bullet_() {
+Cartridge PlayerGun::create_bullet_() {
     builder_->create_cartridge();
     builder_->setSprite();
     builder_->setVelocity();
@@ -16,14 +16,16 @@ Cartridge Gun::create_bullet_() {
     return *builder_->get_cartridge();
 }
 
-
-Cartridge Gun::shoot() {
+Cartridge PlayerGun::shoot() {
     if (clock_.getElapsedTime().asSeconds() >= reload_time_) {
         clock_.restart();
         return create_bullet_();
     }
     return {};
 }
+
+
+
 
 
 
