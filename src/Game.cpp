@@ -17,19 +17,7 @@ Game::~Game() {
 }
 
 
-void Game::buttonPressed_() {
-//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-//        player_.move_up_(clock_.getElapsedTime().asSeconds());
-//    }
-//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-//        player_.move_down_(clock_.getElapsedTime().asSeconds());
-//    }
-}
-
-
-
 void Game::run() {
-    Bullet bullet;
     player_.reset_clock();
     while (window_.isOpen()) {
         clock_.restart();
@@ -41,12 +29,10 @@ void Game::run() {
                 window_.close();
         }
 
-//        buttonPressed_();
         player_.action();
 
         window_.clear();
         window_.draw(background_);
-        bullet.draw(window_);
         player_.draw(window_);
         window_.display();
     }
