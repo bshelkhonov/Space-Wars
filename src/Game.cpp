@@ -1,23 +1,18 @@
 #include "Game.hpp"
+#include "Background.hpp"
 #include "Settings.hpp"
 #include <SFML/Graphics.hpp>
 
 
-Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close) {
-    auto bg_texture = new sf::Texture();
-    bg_texture->loadFromFile(BACKGROUND_FILE);
-    background_.setTexture(*bg_texture);
-    background_.setPosition(0, 0);
-}
+Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close) {}
 
 
-Game::~Game() {
-    delete background_.getTexture();
-}
+Game::~Game() {}
 
 
 void Game::run() {
-    player_.reset_clock();
+    SpaceShip player;
+    Background background;
     while (window_.isOpen()) {
         clock_.restart();
         sf::Event event;
@@ -28,11 +23,12 @@ void Game::run() {
                 window_.close();
         }
 
-        player_.action();
+        player.action();
+        background.move();
 
         window_.clear();
-        window_.draw(background_);
-        player_.draw(window_);
+        background.draw(window_);
+        player.draw(window_);
         window_.display();
     }
 }

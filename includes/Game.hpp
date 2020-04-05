@@ -13,9 +13,6 @@ private:
     sf::RenderWindow window_;
     sf::Clock clock_;
 
-    sf::Sprite background_;
-    SpaceShip player_;
-
 public:
     Game();
 
