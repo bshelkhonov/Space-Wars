@@ -12,7 +12,7 @@
 #include <list>
 
 
-class SpaceShip : public IDrawable {
+class Spaceship : public IDrawable {
 private:
     sf::Sprite sprite_;
 
@@ -24,20 +24,22 @@ private:
 
     std::list<Bullet> bullets_;
 
-    float last_time_move_;
-
-    sf::Vector2f offset_;
+    sf::Vector2f bullet_offset_;
 
     void shoot_();
 
-    void update_time_();
-
 public:
-    SpaceShip();
+    Spaceship();
 
-    ~SpaceShip();
+    ~Spaceship();
 
-    void reset_clock();
+    void setSprite(const sf::Sprite&);
+
+    void setGun(IGun*);
+
+    void setMover(IObjectMover*);
+
+    void setBulletOffset(const sf::Vector2f&);
 
     void action();
 
@@ -48,6 +50,8 @@ public:
     sf::Vector2f getPosition() const override;
 
     void setPosition(const sf::Vector2f&) override;
+
+    bool isOutside() const override;
 };
 
 

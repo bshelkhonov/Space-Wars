@@ -18,7 +18,7 @@ public:
 
     void setSprite() override;
 
-    void setVelocity() override;
+    void setMover() override;
 };
 
 

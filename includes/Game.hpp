@@ -2,7 +2,7 @@
 #define SPACE_WARS_GAME_HPP
 
 
-#include "SpaceShip.hpp"
+#include "Spaceship.hpp"
 #include "Bullet.hpp"
 #include <SFML/Graphics.hpp>
 #include <list>

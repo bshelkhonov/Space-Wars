@@ -4,9 +4,9 @@
 
 #include "ICartridgeBuilder.hpp"
 
+
 class IGun {
 public:
-
     virtual Cartridge shoot() = 0;
 };
 

@@ -3,8 +3,10 @@
 
 
 #include "IDrawable.hpp"
+#include "IObjectMover.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory>
 
 
 class Bullet : public IDrawable {
@@ -15,6 +17,8 @@ private:
 
     sf::Clock clock_;
 
+    std::shared_ptr<IObjectMover> mover_;
+
 public:
     Bullet();
 
@@ -22,7 +26,7 @@ public:
 
     void setColor(const sf::Color&);
 
-    void setVelocity(const sf::Vector2f&);
+    void setMover(IObjectMover*);
 
     void setPosition(const sf::Vector2f&) override;
 
@@ -30,9 +34,11 @@ public:
 
     void draw(sf::RenderWindow&) override;
 
-    void move(const sf::Vector2f&) override {} // TODO
+    void move(const sf::Vector2f&) override;
 
-    sf::Vector2f getPosition() const override {} // TODO
+    sf::Vector2f getPosition() const override;
+
+    bool isOutside() const override;
 };
 
 

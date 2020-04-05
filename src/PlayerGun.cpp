@@ -10,14 +10,15 @@ PlayerGun::PlayerGun() : IGun(), reload_time_(PLAYER_DEFAULT_GUN_RELOAD),
 Cartridge PlayerGun::create_bullet_() {
     builder_->create_cartridge();
     builder_->setSprite();
-    builder_->setVelocity();
+    builder_->setMover();
     builder_->setColor();
     builder_->setRotation();
     return *builder_->get_cartridge();
 }
 
+
 Cartridge PlayerGun::shoot() {
-    if (clock_.getElapsedTime().asSeconds() >= reload_time_) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && clock_.getElapsedTime().asSeconds() >= reload_time_) {
         clock_.restart();
         return create_bullet_();
     }

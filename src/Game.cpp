@@ -1,17 +1,17 @@
 #include "Game.hpp"
 #include "Background.hpp"
 #include "Settings.hpp"
+#include "PlayerSpaceship.hpp"
 #include <SFML/Graphics.hpp>
 
 
 Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close) {}
 
 
-Game::~Game() {}
+Game::~Game() = default;
 
 
 void Game::run() {
-    SpaceShip player;
     Background background;
     while (window_.isOpen()) {
         clock_.restart();
@@ -23,12 +23,12 @@ void Game::run() {
                 window_.close();
         }
 
-        player.action();
+        PlayerSpaceship::get().action();
         background.move();
 
         window_.clear();
         background.draw(window_);
-        player.draw(window_);
+        PlayerSpaceship::get().draw(window_);
         window_.display();
     }
 }
