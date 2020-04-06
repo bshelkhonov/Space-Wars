@@ -17,7 +17,6 @@ void Background::move() {
 }
 
 
-
 void Background::draw(sf::RenderWindow& window) {
     window.draw(sprite_);
 }

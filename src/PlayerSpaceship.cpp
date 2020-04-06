@@ -30,11 +30,16 @@ void PlayerSpaceship::create_() {
 
 
 Spaceship& PlayerSpaceship::get() {
-    if (player_spaceship_ == nullptr) {
-        std::cout << "here";
+    if (player_spaceship_ == nullptr)
         create_();
-    }
+
     return *player_spaceship_;
+}
+
+
+void PlayerSpaceship::destroy() {
+    player_spaceship_.reset();
+    delete sprite_.getTexture();
 }
 
 

@@ -14,7 +14,7 @@ set(SOURCES
         includes/ICartridgeBuilder.hpp includes/StockPlayerCartridgeBuilder.hpp src/ICartridgeBuilder.cpp
         src/StockPlayerCartridgeBuilder.cpp includes/IObjectMover.hpp includes/PlayerMover.hpp src/PlayerMover.cpp
         includes/PlayerGun.hpp includes/IGun.hpp src/PlayerGun.cpp includes/PlayerSpaceship.hpp src/PlayerSpaceship.cpp
-        includes/Background.hpp src/Background.cpp includes/BulletMover.hpp src/BulletMover.cpp)
+        includes/Background.hpp src/Background.cpp includes/BulletMover.hpp src/BulletMover.cpp includes/EnemyCreator.hpp src/EnemyCreator.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio)

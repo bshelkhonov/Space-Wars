@@ -18,6 +18,8 @@ private:
 
 public:
     static Spaceship& get();
+
+    static void destroy();
 };
 
 
