@@ -13,6 +13,11 @@ StockPlayerCartridgeBuilder::StockPlayerCartridgeBuilder() : ICartridgeBuilder()
 }
 
 
+StockPlayerCartridgeBuilder::~StockPlayerCartridgeBuilder() {
+    delete sprite_.getTexture();
+}
+
+
 void StockPlayerCartridgeBuilder::create_cartridge() {
     cartridge_.reset(new Cartridge(1));
 }
@@ -26,4 +31,6 @@ void StockPlayerCartridgeBuilder::setSprite() {
 void StockPlayerCartridgeBuilder::setMover() {
     cartridge_->front().setMover(new BulletMover(PLAYER_DEFAULT_BULLET_VELOCITY));
 }
+
+
 
