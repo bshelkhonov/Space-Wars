@@ -19,7 +19,7 @@ public:
 
     virtual void setSprite() = 0;
     virtual void setRotation() {};
-    virtual void setVelocity() = 0;
+    virtual void setMover() = 0;
     virtual void setColor() {};
 };
 

@@ -1,7 +1,5 @@
 #include "PlayerMover.hpp"
 #include "Settings.hpp"
-#include <iostream>
-
 
 
 void PlayerMover::move_up_(IDrawable& player_spaceship) const {

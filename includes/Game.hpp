@@ -2,8 +2,9 @@
 #define SPACE_WARS_GAME_HPP
 
 
-#include "SpaceShip.hpp"
+#include "Spaceship.hpp"
 #include "Bullet.hpp"
+#include "EnemyCreator.hpp"
 #include <SFML/Graphics.hpp>
 #include <list>
 
@@ -13,8 +14,7 @@ private:
     sf::RenderWindow window_;
     sf::Clock clock_;
 
-    sf::Sprite background_;
-    SpaceShip player_;
+    std::list<Spaceship> enemies_;
 
 public:
     Game();

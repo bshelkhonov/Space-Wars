@@ -1,4 +1,5 @@
 #include "StockPlayerCartridgeBuilder.hpp"
+#include "BulletMover.hpp"
 #include "Settings.hpp"
 
 
@@ -7,8 +8,13 @@ StockPlayerCartridgeBuilder::StockPlayerCartridgeBuilder() : ICartridgeBuilder()
     texture->loadFromFile(BULLET_FILE_1);
     sprite_.setTexture(*texture);
     sprite_.setTextureRect(sf::IntRect(376, 316, 37, 11));
-    sprite_.setScale(0.8, 0.8);
+    sprite_.setScale(0.3, 0.3);
     sprite_.setColor(sf::Color::Green);
+}
+
+
+StockPlayerCartridgeBuilder::~StockPlayerCartridgeBuilder() {
+    delete sprite_.getTexture();
 }
 
 
@@ -22,7 +28,9 @@ void StockPlayerCartridgeBuilder::setSprite() {
 }
 
 
-void StockPlayerCartridgeBuilder::setVelocity() {
-    cartridge_->front().setVelocity(PLAYER_DEFAULT_BULLET_VELOCITY);
+void StockPlayerCartridgeBuilder::setMover() {
+    cartridge_->front().setMover(new BulletMover(PLAYER_DEFAULT_BULLET_VELOCITY));
 }
+
+
 

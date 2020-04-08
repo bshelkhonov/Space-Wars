@@ -14,11 +14,13 @@ private:
 public:
     StockPlayerCartridgeBuilder();
 
+    ~StockPlayerCartridgeBuilder();
+
     void create_cartridge() override;
 
     void setSprite() override;
 
-    void setVelocity() override;
+    void setMover() override;
 };
 
 

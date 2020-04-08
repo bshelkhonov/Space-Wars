@@ -1,40 +1,42 @@
 #include "Game.hpp"
+#include "Background.hpp"
 #include "Settings.hpp"
+#include "PlayerSpaceship.hpp"
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 
-Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close) {
-    auto bg_texture = new sf::Texture();
-    bg_texture->loadFromFile(BACKGROUND_FILE);
-    background_.setTexture(*bg_texture);
-    background_.setPosition(0, 0);
-}
+Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close) {}
 
 
-Game::~Game() {
-    delete background_.getTexture();
-}
+Game::~Game() = default;
 
 
 void Game::run() {
-    player_.reset_clock();
+    Background background;
     while (window_.isOpen()) {
         clock_.restart();
-        sf::Event event;
+        sf::Event event{};
 
+        for (auto& enemy : EnemyCreator::get())
+            enemies_.push_front(enemy);
 
         while (window_.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window_.close();
         }
 
-        player_.action();
+        PlayerSpaceship::get().action();
+
+        for (auto& enemy : enemies_)
+            enemy.action();
+
+        background.move();
 
         window_.clear();
-        window_.draw(background_);
-        player_.draw(window_);
+        background.draw(window_);
+        PlayerSpaceship::get().draw(window_);
         window_.display();
     }
+    PlayerSpaceship::destroy();
 }
 
