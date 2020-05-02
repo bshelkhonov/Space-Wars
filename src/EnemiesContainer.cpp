@@ -14,6 +14,18 @@ void EnemiesContainer::spawn_enemies_() {
 }
 
 
+void EnemiesContainer::destroy_far_enemies_() {
+    for (auto it = spaceships_.begin(); it != spaceships_.end(); ) {
+        if (it->getPosition().x <= -X_BORDER) {
+            spaceships_.erase(it++);
+        } else {
+            ++it;
+        }
+    }
+}
+
+
+
 void EnemiesContainer::draw(sf::RenderWindow& window) {
     for (auto& spaceship : spaceships_)
         spaceship.draw(window);
@@ -25,12 +37,20 @@ void EnemiesContainer::action() {
         spaceship.action();
 
     spawn_enemies_();
+    destroy_far_enemies_();
 }
 
 
-void EnemiesContainer::collision(Spaceship&) {
-
+void EnemiesContainer::collision(Spaceship& other) {
+    for (auto it = spaceships_.begin(); it != spaceships_.end();) {
+        if (other.isColliding(*it)) {
+            spaceships_.erase(it++);
+        } else {
+            ++it;
+        }
+    }
 }
+
 
 
 

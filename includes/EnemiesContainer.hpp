@@ -5,7 +5,7 @@
 #include "EnemyCreator.hpp"
 #include "Spaceship.hpp"
 #include <SFML/Graphics.hpp>
-#include <vector>
+#include <list>
 #include <random>
 
 
@@ -14,11 +14,13 @@ private:
 
     sf::Clock clock_;
 
-    std::vector<Spaceship> spaceships_;
+    std::list<Spaceship> spaceships_;
 
     EnemyCreator enemy_creator_;
 
     void spawn_enemies_();
+
+    void destroy_far_enemies_();
 
 public:
 

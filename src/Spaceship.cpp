@@ -2,6 +2,7 @@
 #include "Settings.hpp"
 #include "PlayerMover.hpp"
 #include "PlayerGun.hpp"
+#include "Collision.hpp"
 #include <iostream>
 
 
@@ -29,6 +30,12 @@ void Spaceship::setMover(IObjectMover* mover) {
 void Spaceship::setBulletOffset(const sf::Vector2f& bullet_offset) {
     bullet_offset_ = bullet_offset;
 }
+
+
+const sf::Sprite& Spaceship::getSprite() const {
+    return sprite_;
+}
+
 
 
 void Spaceship::shoot_() {
@@ -84,6 +91,17 @@ bool Spaceship::isOutside() const {
     bool out_x_border = sprite_.getPosition().x <= -X_BORDER || sprite_.getPosition().x >= SCREEN_WIDTH + X_BORDER;
     bool out_y_border = sprite_.getPosition().y <= -Y_BORDER || sprite_.getPosition().y >= SCREEN_HEIGHT + Y_BORDER;
     return out_x_border || out_y_border;
+}
+
+
+bool Spaceship::isColliding(IDrawable& other) {
+    for (auto it = bullets_.begin(); it != bullets_.end(); ++it) {
+        if (it->isColliding(other)) {
+            bullets_.erase(it);
+            return true;
+        }
+    }
+    return false;
 }
 
 

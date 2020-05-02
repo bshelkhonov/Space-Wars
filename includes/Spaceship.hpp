@@ -43,11 +43,15 @@ public:
 
     void setPosition(const sf::Vector2f&) override;
 
+    const sf::Sprite& getSprite() const override;
+
     void action();
 
     void draw(sf::RenderWindow&) override;
 
     void move(const sf::Vector2f&) override;
+
+    bool isColliding(IDrawable&) override;
 
     sf::Vector2f getPosition() const override;
 
