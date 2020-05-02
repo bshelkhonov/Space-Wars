@@ -35,7 +35,7 @@ std::vector<Spaceship> EnemyCreator::get() {
 
     for (uint32_t i = 0; i < enemies_num; ++i) {
         result.push_back(get_random_enemy_());
-        result.back().move({i * 100.0f, random_() % 300 * (random() % 2 == 0 ? -1.f : 1.f)});
+        result.back().move({i * DISTANCE_BETWEEN_ENEMIES, random_() % 300 * (random() % 2 == 0 ? -1.f : 1.f)});
     }
 
     return result;

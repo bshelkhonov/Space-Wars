@@ -37,6 +37,7 @@ const uint32_t MAX_ENEMIES_SPAWNED = 3;
 const sf::Vector2f DEFAULT_ENEMY_VELOCITY = {-200, 80};
 const sf::Vector2f DEFAULT_ENEMY_POS = {1400, 300};
 const sf::Vector2f ENEMY_SPRITE_SCALE = {0.3, 0.3};
+const float DISTANCE_BETWEEN_ENEMIES = 100;
 
 
 // RESOURCES

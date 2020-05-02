@@ -66,7 +66,7 @@ set(SOURCES
         includes/PlayerGun.hpp includes/IGun.hpp src/PlayerGun.cpp includes/PlayerSpaceship.hpp src/PlayerSpaceship.cpp
         includes/Background.hpp src/Background.cpp includes/BulletMover.hpp src/BulletMover.cpp
         includes/EnemyCreator.hpp src/EnemyCreator includes/EnemiesContainer.hpp src/EnemiesContainer.cpp
-        src/EnemyMover.cpp includes/EnemyMover.hpp)
+        src/EnemyMover.cpp includes/EnemyMover.hpp includes/Randomizer.hpp src/Randomizer.cpp)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
 add_executable(RunTest ${SOURCES} tests/RunTest.cpp tests/TestIDrawables.hpp)
