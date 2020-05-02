@@ -24,19 +24,19 @@ const sf::Vector2f PLAYER_MOVE_UP_SPEED = {0, -760};
 const sf::Vector2f PLAYER_MOVE_DOWN_SPEED = {0, 760};
 const sf::Vector2f PLAYER_MOVE_LEFT_SPEED = {-500, 0};
 const sf::Vector2f PLAYER_MOVE_RIGHT_SPEED = {500, 0};
-const float PLAYER_DEFAULT_GUN_RELOAD = 0.4f;
+const float PLAYER_DEFAULT_GUN_RELOAD = 0.2f;
 const sf::Vector2f PLAYER_DEFAULT_BULLET_VELOCITY = {800, 0};
 const sf::Vector2f PLAYER_DEFAULT_BULLET_OFFSET = {80, 40};
 
 
 // ENEMIES
 
-const float MIN_DELAY_BETWEEN_SPAWN = 3.0;
+const float MIN_DELAY_BETWEEN_SPAWN = 3.5;
 const uint32_t MIN_ENEMIES_SPAWNED = 1;
-const uint32_t MAX_ENEMIES_SPAWNED = 4;
+const uint32_t MAX_ENEMIES_SPAWNED = 3;
 const sf::Vector2f DEFAULT_ENEMY_VELOCITY = {-200, 80};
 const sf::Vector2f DEFAULT_ENEMY_POS = {1400, 300};
-const sf::Vector2f ENEMY_SPRITE_SCALE = {0.05, 0.05};
+const sf::Vector2f ENEMY_SPRITE_SCALE = {0.3, 0.3};
 
 
 // RESOURCES
@@ -45,7 +45,8 @@ const std::string BACKGROUND_FILE = "../resources/images/space_bg2.png";
 const std::string PLAYER_FILE =  "../resources/images/airship.png";
 const std::string BULLET_FILE_1 = "../resources/images/M484BulletCollection1.png";
 const std::vector<std::string> ENEMIES_FILES {
-        "../resources/images/enemy1.png", "../resources/images/enemy2.png", "../resources/images/enemy3.png"
+        "../resources/images/enemy1.png", "../resources/images/enemy2.png", "../resources/images/enemy3.png",
+        "../resources/images/enemy4.png"
 };
 
 #endif //SPACE_WARS_SETTINGS_HPP

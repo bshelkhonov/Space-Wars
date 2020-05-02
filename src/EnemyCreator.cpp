@@ -15,8 +15,6 @@ EnemyCreator::EnemyCreator() : random_(std::chrono::high_resolution_clock::now()
 }
 
 
-
-
 Spaceship EnemyCreator::get_random_enemy_() {
     Spaceship spaceship;
     spaceship.setSprite(sprites_[random() % sprites_.size()]);
