@@ -28,6 +28,11 @@ const float PLAYER_DEFAULT_GUN_RELOAD = 0.4f;
 const sf::Vector2f PLAYER_DEFAULT_BULLET_VELOCITY = {800, 0};
 const sf::Vector2f PLAYER_DEFAULT_BULLET_OFFSET = {80, 40};
 
+
+// ENEMIES
+
+const float MIN_DELAY_BETWEEN_SPAWN = 1.0;
+
 // RESOURCES
 
 const std::string BACKGROUND_FILE = "../resources/images/space_bg2.png";

@@ -16,6 +16,8 @@ public:
     virtual void setPosition(const sf::Vector2f&) = 0;
 
     [[nodiscard]] virtual bool isOutside() const = 0;
+
+    virtual ~IDrawable() = default;
 };
 
 

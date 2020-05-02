@@ -14,8 +14,6 @@ private:
     sf::RenderWindow window_;
     sf::Clock clock_;
 
-    std::list<Spaceship> enemies_;
-
 public:
     Game();
 

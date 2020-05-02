@@ -39,6 +39,8 @@ public:
     sf::Vector2f getPosition() const override;
 
     bool isOutside() const override;
+
+    ~Bullet() = default;
 };
 
 

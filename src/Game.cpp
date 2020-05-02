@@ -2,6 +2,7 @@
 #include "Background.hpp"
 #include "Settings.hpp"
 #include "PlayerSpaceship.hpp"
+#include "EnemiesContainer.hpp"
 #include <SFML/Graphics.hpp>
 
 
@@ -13,12 +14,13 @@ Game::~Game() = default;
 
 void Game::run() {
     Background background;
+
+    EnemiesContainer enemies;
+
     while (window_.isOpen()) {
         clock_.restart();
         sf::Event event{};
 
-        for (auto& enemy : EnemyCreator::get())
-            enemies_.push_front(enemy);
 
         while (window_.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
@@ -26,9 +28,9 @@ void Game::run() {
         }
 
         PlayerSpaceship::get().action();
+        enemies.action();
 
-        for (auto& enemy : enemies_)
-            enemy.action();
+        enemies.collision(PlayerSpaceship::get());
 
         background.move();
 
