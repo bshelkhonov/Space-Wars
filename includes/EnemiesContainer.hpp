@@ -12,8 +12,6 @@
 class EnemiesContainer {
 private:
 
-    std::mt19937 random_;
-
     sf::Clock clock_;
 
     std::vector<Spaceship> spaceships_;

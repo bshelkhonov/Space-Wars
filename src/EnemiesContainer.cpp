@@ -1,10 +1,11 @@
 #include "EnemiesContainer.hpp"
 #include "Settings.hpp"
+#include "Randomizer.hpp"
 #include <algorithm>
 
 
 void EnemiesContainer::spawn_enemies_() {
-    if (clock_.getElapsedTime().asSeconds() >= MIN_DELAY_BETWEEN_SPAWN && random_() % 2 == 1) {
+    if (clock_.getElapsedTime().asSeconds() >= MIN_DELAY_BETWEEN_SPAWN && Randomizer::randint(0, 1) == 0) {
         auto new_enemies = enemy_creator_.get();
 
         std::copy(new_enemies.begin(), new_enemies.end(), std::back_inserter(spaceships_));
