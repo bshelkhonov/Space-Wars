@@ -37,6 +37,7 @@ void Game::run() {
         window_.clear();
         background.draw(window_);
         PlayerSpaceship::get().draw(window_);
+        enemies.draw(window_);
         window_.display();
     }
     PlayerSpaceship::destroy();

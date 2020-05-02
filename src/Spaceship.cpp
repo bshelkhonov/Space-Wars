@@ -32,6 +32,8 @@ void Spaceship::setBulletOffset(const sf::Vector2f& bullet_offset) {
 
 
 void Spaceship::shoot_() {
+    if (gun_ == nullptr)
+        return;
     for (auto& bullet : gun_->shoot()) {
         bullet.setPosition(sprite_.getPosition() + bullet_offset_);
         bullets_.push_front(bullet);
@@ -46,7 +48,7 @@ void Spaceship::action() {
     for (auto& bullet : bullets_)
         bullet.move();
 
-    for (auto it = bullets_.begin(); it != bullets_.end(); ) {
+    for (auto it = bullets_.begin(); it != bullets_.end();) {
         if (it->isOutside()) {
             bullets_.erase(it++);
         } else {

@@ -31,7 +31,7 @@ private:
 public:
     Spaceship();
 
-    ~Spaceship();
+    ~Spaceship() override;
 
     void setSprite(const sf::Sprite&);
 
@@ -41,6 +41,8 @@ public:
 
     void setBulletOffset(const sf::Vector2f&);
 
+    void setPosition(const sf::Vector2f&) override;
+
     void action();
 
     void draw(sf::RenderWindow&) override;
@@ -48,8 +50,6 @@ public:
     void move(const sf::Vector2f&) override;
 
     sf::Vector2f getPosition() const override;
-
-    void setPosition(const sf::Vector2f&) override;
 
     bool isOutside() const override;
 };

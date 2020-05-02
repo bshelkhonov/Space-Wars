@@ -5,21 +5,20 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 
 
-
 # Download and unpack googletest at configure time
 configure_file(gtest_install.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
         RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-if(result)
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
+if (result)
     message(FATAL_ERROR "CMake step for googletest failed: ${result}")
-endif()
+endif ()
 execute_process(COMMAND ${CMAKE_COMMAND} --build .
         RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-if(result)
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
+if (result)
     message(FATAL_ERROR "Build step for googletest failed: ${result}")
-endif()
+endif ()
 
 
 # Prevent overriding the parent project's compiler/linker
@@ -33,22 +32,20 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
         EXCLUDE_FROM_ALL)
 
 
-
-
 configure_file(sfml_install.in sfml-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
         RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/sfml-download )
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/sfml-download)
 
-if(result)
+if (result)
     message(FATAL_ERROR "CMake step for sfml failed: ${result}")
-endif()
+endif ()
 execute_process(COMMAND ${CMAKE_COMMAND} --build .
         RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/sfml-download )
-if(result)
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/sfml-download)
+if (result)
     message(FATAL_ERROR "Build step for sfml failed: ${result}")
-endif()
+endif ()
 
 
 set(sfml_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -68,7 +65,8 @@ set(SOURCES
         src/StockPlayerCartridgeBuilder.cpp includes/IObjectMover.hpp includes/PlayerMover.hpp src/PlayerMover.cpp
         includes/PlayerGun.hpp includes/IGun.hpp src/PlayerGun.cpp includes/PlayerSpaceship.hpp src/PlayerSpaceship.cpp
         includes/Background.hpp src/Background.cpp includes/BulletMover.hpp src/BulletMover.cpp
-        includes/EnemyCreator.hpp src/EnemyCreator includes/EnemiesContainer.hpp src/EnemiesContainer.cpp)
+        includes/EnemyCreator.hpp src/EnemyCreator includes/EnemiesContainer.hpp src/EnemiesContainer.cpp
+        src/EnemyMover.cpp includes/EnemyMover.hpp)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
 add_executable(RunTest ${SOURCES} tests/RunTest.cpp tests/TestIDrawables.hpp)

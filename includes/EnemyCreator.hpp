@@ -3,12 +3,24 @@
 
 
 #include "Spaceship.hpp"
+#include <SFML/Graphics.hpp>
 #include <vector>
+#include <random>
 
 
 class EnemyCreator {
+private:
+
+    std::vector<sf::Sprite> sprites_;
+
+    std::mt19937 random_;
+
+    Spaceship get_random_enemy_();
+
 public:
-    static std::vector<Spaceship> get();
+    EnemyCreator();
+
+    std::vector<Spaceship> get();
 };
 
 
