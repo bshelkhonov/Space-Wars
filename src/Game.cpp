@@ -4,6 +4,8 @@
 #include "PlayerSpaceship.hpp"
 #include "EnemiesContainer.hpp"
 #include <SFML/Graphics.hpp>
+#include <TGUI/TGUI.hpp>
+
 
 
 Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close) {}
@@ -17,6 +19,8 @@ void Game::run() {
 
     EnemiesContainer enemies;
 
+    tgui::Gui gui(window_);
+
     while (window_.isOpen()) {
         clock_.restart();
         sf::Event event{};
@@ -25,6 +29,7 @@ void Game::run() {
         while (window_.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window_.close();
+            gui.handleEvent(event);
         }
 
         PlayerSpaceship::get().action();
@@ -38,6 +43,8 @@ void Game::run() {
         background.draw(window_);
         PlayerSpaceship::get().draw(window_);
         enemies.draw(window_);
+
+        gui.draw();
         window_.display();
     }
     PlayerSpaceship::destroy();
