@@ -50,4 +50,17 @@ const std::vector<std::string> ENEMIES_FILES {
         "../resources/images/enemy4.png"
 };
 
+// GUI
+
+const std::string FONT_PATH = "../resources/fonts/default.ttf";
+const sf::Vector2f BUTTON_SIZE = {400, 200};
+const sf::Vector2f START_BUTTON_POS = {
+        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2, SCREEN_HEIGHT / 2 - BUTTON_SIZE.y
+};
+const sf::Vector2f EXIT_BUTTON_POS = {
+        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2, SCREEN_HEIGHT/ 2
+};
+const uint32_t FONT_SIZE = 100;
+
+
 #endif //SPACE_WARS_SETTINGS_HPP
