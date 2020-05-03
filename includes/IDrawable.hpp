@@ -17,7 +17,7 @@ public:
 
     virtual void setPosition(const sf::Vector2f&) = 0;
 
-    virtual bool isColliding(IDrawable&) = 0;
+    virtual bool isSpriteColliding(const IDrawable&) = 0;
 
     [[nodiscard]] virtual bool isOutside() const = 0;
 

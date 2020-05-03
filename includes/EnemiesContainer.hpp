@@ -24,11 +24,19 @@ private:
 
 public:
 
+    void init();
+
     void draw(sf::RenderWindow&);
 
     void action();
 
     void collision(Spaceship&);
+
+    [[nodiscard]] std::list<Spaceship>::const_iterator begin() const;
+
+    [[nodiscard]] std::list<Spaceship>::const_iterator end() const;
+
+    void reset();
 
 };
 

@@ -30,8 +30,6 @@ private:
 
     void menu_();
 
-    void start_button_pressed_();
-
 public:
     Game();
 

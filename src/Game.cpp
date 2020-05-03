@@ -6,19 +6,16 @@
 #include <TGUI/TGUI.hpp>
 
 
-
 Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close),
-    gui_(window_), font_(tgui::Font(FONT_PATH)), game_state_(GAME_STATE::IN_MENU) {}
+               gui_(window_), font_(tgui::Font(FONT_PATH)), game_state_(GAME_STATE::IN_MENU) {}
 
 
 Game::~Game() = default;
 
 
-
 void Game::play_() {
     EnemiesContainer enemies;
-
-    while (window_.isOpen()) {
+    while (game_state_ == GAME_STATE::PLAY && window_.isOpen()) {
         clock_.restart();
         sf::Event event{};
 
@@ -32,7 +29,11 @@ void Game::play_() {
         PlayerSpaceship::get().action();
         enemies.action();
 
+
+        if (PlayerSpaceship::collisionWithEnemy(enemies))
+            game_state_ = GAME_STATE::IN_MENU;
         enemies.collision(PlayerSpaceship::get());
+
 
         background_.move();
 
@@ -45,11 +46,6 @@ void Game::play_() {
         window_.display();
     }
     PlayerSpaceship::destroy();
-}
-
-
-void Game::start_button_pressed_() {
-    game_state_ = GAME_STATE::PLAY;
 }
 
 

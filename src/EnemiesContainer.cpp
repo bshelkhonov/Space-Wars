@@ -43,12 +43,31 @@ void EnemiesContainer::action() {
 
 void EnemiesContainer::collision(Spaceship& other) {
     for (auto it = spaceships_.begin(); it != spaceships_.end();) {
-        if (other.isColliding(*it)) {
+        if (other.isBulletColliding(*it)) {
             spaceships_.erase(it++);
         } else {
             ++it;
         }
     }
+}
+
+
+void EnemiesContainer::init() {
+    clock_.restart();
+}
+
+
+void EnemiesContainer::reset() {
+    spaceships_.clear();
+}
+
+std::list<Spaceship>::const_iterator EnemiesContainer::begin() const {
+    return spaceships_.begin();
+}
+
+
+std::list<Spaceship>::const_iterator EnemiesContainer::end() const {
+    return spaceships_.end();
 }
 
 

@@ -59,7 +59,7 @@ bool Bullet::isOutside() const {
 }
 
 
-bool Bullet::isColliding(IDrawable& other) {
+bool Bullet::isSpriteColliding(const IDrawable& other) {
     return Collision::PixelPerfectTest(sprite_, other.getSprite());
 }
 

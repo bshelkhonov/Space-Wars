@@ -94,15 +94,21 @@ bool Spaceship::isOutside() const {
 }
 
 
-bool Spaceship::isColliding(IDrawable& other) {
+bool Spaceship::isBulletColliding(const IDrawable& other) {
     for (auto it = bullets_.begin(); it != bullets_.end(); ++it) {
-        if (it->isColliding(other)) {
+        if (it->isSpriteColliding(other)) {
             bullets_.erase(it);
             return true;
         }
     }
     return false;
 }
+
+
+bool Spaceship::isSpriteColliding(const IDrawable& other) {
+    return Collision::PixelPerfectTest(getSprite(), other.getSprite());
+}
+
 
 
 

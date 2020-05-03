@@ -51,7 +51,9 @@ public:
 
     void move(const sf::Vector2f&) override;
 
-    bool isColliding(IDrawable&) override;
+    bool isBulletColliding(const IDrawable&);
+
+    bool isSpriteColliding(const IDrawable&) override;
 
     sf::Vector2f getPosition() const override;
 

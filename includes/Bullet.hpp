@@ -32,7 +32,7 @@ public:
 
     const sf::Sprite& getSprite() const override;
 
-    bool isColliding(IDrawable&) override;
+    bool isSpriteColliding(const IDrawable&) override;
 
     void move();
 
