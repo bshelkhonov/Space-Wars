@@ -13,8 +13,6 @@ class Bullet : public IDrawable {
 private:
     sf::Sprite sprite_;
 
-    sf::Vector2f velocity_;
-
     sf::Clock clock_;
 
     std::shared_ptr<IObjectMover> mover_;
@@ -44,7 +42,7 @@ public:
 
     bool isOutside() const override;
 
-    ~Bullet() = default;
+    ~Bullet() override = default;
 };
 
 

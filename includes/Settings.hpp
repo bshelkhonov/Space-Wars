@@ -31,9 +31,9 @@ const sf::Vector2f PLAYER_DEFAULT_BULLET_OFFSET = {80, 40};
 
 // ENEMIES
 
-const float MIN_DELAY_BETWEEN_SPAWN = 2.0;
+const float MIN_DELAY_BETWEEN_SPAWN = 1.5;
 const uint32_t MIN_ENEMIES_SPAWNED = 1;
-const uint32_t MAX_ENEMIES_SPAWNED = 3;
+const uint32_t MAX_ENEMIES_SPAWNED = 5;
 const sf::Vector2f DEFAULT_ENEMY_VELOCITY = {-200, 80};
 const sf::Vector2f DEFAULT_ENEMY_POS = {1400, 300};
 const sf::Vector2f ENEMY_SPRITE_SCALE = {0.3, 0.3};
