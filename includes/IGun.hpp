@@ -8,6 +8,8 @@
 class IGun {
 public:
     virtual Cartridge shoot() = 0;
+
+    virtual ~IGun() = default;
 };
 
 

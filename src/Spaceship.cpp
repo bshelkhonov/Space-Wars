@@ -2,6 +2,7 @@
 #include "Settings.hpp"
 #include "PlayerMover.hpp"
 #include "PlayerGun.hpp"
+#include "Collision.hpp"
 #include <iostream>
 
 
@@ -31,7 +32,15 @@ void Spaceship::setBulletOffset(const sf::Vector2f& bullet_offset) {
 }
 
 
+const sf::Sprite& Spaceship::getSprite() const {
+    return sprite_;
+}
+
+
+
 void Spaceship::shoot_() {
+    if (gun_ == nullptr)
+        return;
     for (auto& bullet : gun_->shoot()) {
         bullet.setPosition(sprite_.getPosition() + bullet_offset_);
         bullets_.push_front(bullet);
@@ -46,7 +55,7 @@ void Spaceship::action() {
     for (auto& bullet : bullets_)
         bullet.move();
 
-    for (auto it = bullets_.begin(); it != bullets_.end(); ) {
+    for (auto it = bullets_.begin(); it != bullets_.end();) {
         if (it->isOutside()) {
             bullets_.erase(it++);
         } else {
@@ -83,6 +92,23 @@ bool Spaceship::isOutside() const {
     bool out_y_border = sprite_.getPosition().y <= -Y_BORDER || sprite_.getPosition().y >= SCREEN_HEIGHT + Y_BORDER;
     return out_x_border || out_y_border;
 }
+
+
+bool Spaceship::isBulletColliding(const IDrawable& other) {
+    for (auto it = bullets_.begin(); it != bullets_.end(); ++it) {
+        if (it->isSpriteColliding(other)) {
+            bullets_.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
+
+bool Spaceship::isSpriteColliding(const IDrawable& other) {
+    return Collision::PixelPerfectTest(getSprite(), other.getSprite());
+}
+
 
 
 

@@ -21,6 +21,8 @@ public:
     virtual void setRotation() {};
     virtual void setMover() = 0;
     virtual void setColor() {};
+
+    virtual ~ICartridgeBuilder() = default;
 };
 
 

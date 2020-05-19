@@ -3,6 +3,7 @@
 
 
 #include "Spaceship.hpp"
+#include "EnemiesContainer.hpp"
 
 
 class PlayerSpaceship {
@@ -18,6 +19,8 @@ private:
 
 public:
     static Spaceship& get();
+
+    static bool collisionWithEnemy(const EnemiesContainer&);
 
     static void destroy();
 };

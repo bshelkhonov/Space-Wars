@@ -14,7 +14,7 @@ private:
 public:
     StockPlayerCartridgeBuilder();
 
-    ~StockPlayerCartridgeBuilder();
+    ~StockPlayerCartridgeBuilder() override;
 
     void create_cartridge() override;
 

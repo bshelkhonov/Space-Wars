@@ -37,6 +37,15 @@ Spaceship& PlayerSpaceship::get() {
 }
 
 
+bool PlayerSpaceship::collisionWithEnemy(const EnemiesContainer& enemies) {
+    for (const auto& enemy : enemies) {
+        if (get().isSpriteColliding(enemy))
+            return true;
+    }
+    return false;
+}
+
+
 void PlayerSpaceship::destroy() {
     player_spaceship_.reset();
     delete sprite_.getTexture();
