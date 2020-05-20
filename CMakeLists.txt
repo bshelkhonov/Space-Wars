@@ -80,8 +80,8 @@ set(TGUI_DIR ${CMAKE_CURRENT_BINARY_DIR}/tgui-build)
 add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/tgui-src
         ${CMAKE_CURRENT_BINARY_DIR}/tgui-build
         EXCLUDE_FROM_ALL)
-find_package(TGUI PATHS ${CMAKE_CURRENT_BINARY_DIR}/tgui-src REQUIRED)
-
+#find_package(TGUI PATHS ${CMAKE_CURRENT_BINARY_DIR}/tgui-src REQUIRED)
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/tgui-src/include)
 
 
 include_directories(includes)
@@ -101,4 +101,4 @@ add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
 add_executable(RunTest ${SOURCES} tests/RunTest.cpp tests/TestIDrawables.hpp)
 
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio tgui)
-target_link_libraries(RunTest sfml-graphics sfml-audio gtest_main)
+target_link_libraries(RunTest sfml-graphics sfml-audio gtest_main tgui)

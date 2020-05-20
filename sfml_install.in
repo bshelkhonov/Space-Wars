@@ -5,7 +5,7 @@ project(sfml-download NONE)
 include(ExternalProject)
 ExternalProject_Add(SFML
         GIT_REPOSITORY    https://github.com/SFML/SFML.git
-        GIT_TAG           master
+        GIT_TAG           50e173e403ef8912e3d8ac3c7ab3e27e32243339
         SOURCE_DIR        "${CMAKE_CURRENT_BINARY_DIR}/sfml-src"
         BINARY_DIR        "${CMAKE_CURRENT_BINARY_DIR}/sfml-build"
         CONFIGURE_COMMAND ""
