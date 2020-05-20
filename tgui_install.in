@@ -5,7 +5,7 @@ project(tgui-download NONE)
 include(ExternalProject)
 ExternalProject_Add(TGUI
         GIT_REPOSITORY    https://github.com/texus/TGUI.git
-        GIT_TAG           34b7d99ff4c4029e26447360fc18949452037806
+        GIT_TAG           0.8
         SOURCE_DIR        "${CMAKE_CURRENT_BINARY_DIR}/tgui-src"
         BINARY_DIR        "${CMAKE_CURRENT_BINARY_DIR}/tgui-build"
         CONFIGURE_COMMAND ""
