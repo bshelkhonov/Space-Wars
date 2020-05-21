@@ -12,6 +12,12 @@
 class MenuState : public IState {
 private:
 
+    tgui::Label::Ptr last_game_score_label_;
+
+    tgui::Label::Ptr high_score_label_;
+
+    tgui::LabelRenderer label_renderer_;
+
     tgui::Button::Ptr start_button_;
 
     tgui::Button::Ptr exit_button_;
@@ -21,6 +27,14 @@ private:
     Background background_;
 
     StateResponse response_;
+
+    size_t last_game_score_;
+
+    size_t high_score_;
+
+    const std::string score_text_;
+
+    const std::string high_score_text_;
 
 public:
 
@@ -34,6 +48,7 @@ public:
 
     StateResponse runIteration(sf::RenderWindow&) override;
 
+    void showScore(size_t);
 };
 
 

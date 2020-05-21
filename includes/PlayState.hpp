@@ -24,9 +24,11 @@ private:
 
     tgui::LabelRenderer score_renderer_;
 
-    std::shared_ptr<IState> current_substate_;
+    std::shared_ptr<IState> running_substate_;
 
-    std::shared_ptr<IState> next_substate_;
+    std::shared_ptr<IState> pause_substate_;
+
+    std::shared_ptr<IState> current_substate_;
 
     EnemiesContainer enemies_;
 
@@ -37,6 +39,8 @@ private:
     size_t score_;
 
     const std::string score_prefix_;
+
+    void changeState_();
 
 public:
 
@@ -50,8 +54,7 @@ public:
 
     StateResponse runIteration(sf::RenderWindow&) override;
 
-private:
-
+    size_t getScore() const;
 
 };
 

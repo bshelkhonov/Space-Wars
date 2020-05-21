@@ -43,9 +43,9 @@ const float DISTANCE_BETWEEN_ENEMIES = 100;
 // RESOURCES
 
 const std::string BACKGROUND_FILE = "../resources/images/space_bg2.png";
-const std::string PLAYER_FILE =  "../resources/images/airship.png";
+const std::string PLAYER_FILE = "../resources/images/airship.png";
 const std::string BULLET_FILE_1 = "../resources/images/M484BulletCollection1.png";
-const std::vector<std::string> ENEMIES_FILES {
+const std::vector<std::string> ENEMIES_FILES{
         "../resources/images/enemy1.png", "../resources/images/enemy2.png", "../resources/images/enemy3.png",
         "../resources/images/enemy4.png"
 };
@@ -58,12 +58,29 @@ const sf::Vector2f START_BUTTON_POS = {
         (SCREEN_WIDTH - BUTTON_SIZE.x) / 2, SCREEN_HEIGHT / 2 - BUTTON_SIZE.y
 };
 const sf::Vector2f EXIT_BUTTON_POS = {
-        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2, SCREEN_HEIGHT/ 2
+        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2, SCREEN_HEIGHT / 2
 };
 const uint32_t BUTTON_FONT_SIZE = 100;
 const uint32_t SCORE_LABEL_FONT_SIZE = 20;
+
 const sf::Vector2f SCORE_LABEL_POS = {
         SCREEN_WIDTH - 200, 0
 };
+const std::string HIGH_SCORE_TEXT = "High score: ";
+const std::string LOSE_TEXT = "YOU LOSE\nSCORE: ";
+
+const sf::Vector2f HIGH_SCORE_LABEL_POS = {
+        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2 + 20, 10
+};
+const sf::Vector2f MENU_SCORE_LABEL_POS = {
+        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2 + 20, 70
+};
+const uint32_t SCORE_FONT_SIZE = 40;
+
+const sf::Vector2f HIGH_SCORE_INGAME_POS = {
+        SCREEN_WIDTH - 400, 0
+};
+const uint32_t HIGH_SCORE_INGAME_FONT_SIZE = 20;
+
 
 #endif //SPACE_WARS_SETTINGS_HPP

@@ -4,10 +4,12 @@
 
 #include "Background.hpp"
 #include "IState.hpp"
+#include "PlayState.hpp"
+#include "MenuState.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <TGUI/TGUI.hpp>
-#include <list>
+#include <memory>
 
 
 class Game {
@@ -16,6 +18,16 @@ private:
     sf::RenderWindow window_;
 
     tgui::Gui gui_;
+
+    void startGame_();
+
+    void finishGame_();
+
+    std::shared_ptr<PlayState> play_state_;
+
+    std::shared_ptr<MenuState> menu_state_;
+
+    std::shared_ptr<IState> current_state_;
 
 public:
     Game();

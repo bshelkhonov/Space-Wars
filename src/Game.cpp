@@ -7,44 +7,63 @@
 #include <SFML/Graphics.hpp>
 
 #include <memory>
+#include <iostream>
 
 
-Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close),
-               gui_(window_) {}
+Game::Game() :
+        window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close),
+        gui_(window_), play_state_(std::make_shared<PlayState>(gui_)),
+        menu_state_(std::make_shared<MenuState>(gui_)) {
+    current_state_ = std::dynamic_pointer_cast<IState>(menu_state_);
+    current_state_->enable();
+    play_state_->disable();
+}
 
 
 Game::~Game() = default;
 
 
+void Game::startGame_() {
+    current_state_->disable();
+    current_state_ = std::dynamic_pointer_cast<IState>(play_state_);
+    current_state_->enable();
+    std::cout << "START" << std::endl;
+}
+
+
+void Game::finishGame_() {
+    current_state_->disable();
+    current_state_ = std::dynamic_pointer_cast<IState>(menu_state_);;
+    current_state_->enable();
+    menu_state_->showScore(play_state_->getScore());
+    std::cout << "FIINISH" << std::endl;
+}
+
 
 void Game::run() {
-    std::shared_ptr<IState> play_state = std::dynamic_pointer_cast<IState>(std::make_shared<PlayState>(gui_));
-    std::shared_ptr<IState> menu_state = std::dynamic_pointer_cast<IState>(std::make_shared<MenuState>(gui_));
-
-    std::shared_ptr<IState> current_state = menu_state;
-    std::shared_ptr<IState> next_state = play_state;
-
-    current_state->enable();
-    next_state->disable();
-
     while (window_.isOpen()) {
+        if (current_state_ == std::dynamic_pointer_cast<IState>(play_state_)) {
+            std::cout << 1 << std::endl;
+        }
+
         sf::Event event{};
 
         while (window_.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window_.close();
-            current_state->handleEvent(event);
+            current_state_->handleEvent(event);
             gui_.handleEvent(event);
         }
 
-        auto response = current_state->runIteration(window_);
+        auto response = current_state_->runIteration(window_);
+
         if (response != StateResponse::None) {
             switch (response) {
                 case StateResponse::Start:
+                    startGame_();
+                    break;
                 case StateResponse::Finish:
-                    current_state->disable();
-                    swap(current_state, next_state);
-                    current_state->enable();
+                    finishGame_();
                     break;
                 case StateResponse::CloseWindow:
                     window_.close();
@@ -57,5 +76,7 @@ void Game::run() {
         window_.display();
     }
 }
+
+
 
 
