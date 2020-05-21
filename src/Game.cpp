@@ -27,7 +27,6 @@ void Game::startGame_() {
     current_state_->disable();
     current_state_ = std::dynamic_pointer_cast<IState>(play_state_);
     current_state_->enable();
-    std::cout << "START" << std::endl;
 }
 
 
@@ -36,16 +35,11 @@ void Game::finishGame_() {
     current_state_ = std::dynamic_pointer_cast<IState>(menu_state_);;
     current_state_->enable();
     menu_state_->showScore(play_state_->getScore());
-    std::cout << "FIINISH" << std::endl;
 }
 
 
 void Game::run() {
     while (window_.isOpen()) {
-        if (current_state_ == std::dynamic_pointer_cast<IState>(play_state_)) {
-            std::cout << 1 << std::endl;
-        }
-
         sf::Event event{};
 
         while (window_.pollEvent(event)) {
