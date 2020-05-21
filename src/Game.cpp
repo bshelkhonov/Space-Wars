@@ -9,7 +9,8 @@
 #include <memory>
 
 
-Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close) {}
+Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close),
+               gui_(window_) {}
 
 
 Game::~Game() = default;
@@ -17,9 +18,10 @@ Game::~Game() = default;
 
 void Game::run() {
     std::shared_ptr<IState> play_state = std::dynamic_pointer_cast<IState>(std::make_shared<PlayState>());
-    std::shared_ptr<IState> menu_state = std::dynamic_pointer_cast<IState>(std::make_shared<MenuState>(window_));
+    std::shared_ptr<IState> menu_state = std::dynamic_pointer_cast<IState>(std::make_shared<MenuState>(window_, gui_));
 
     std::shared_ptr<IState> current_state = menu_state;
+    std::shared_ptr<IState> next_state = play_state;
 
     while (window_.isOpen()) {
         sf::Event event{};
@@ -27,21 +29,17 @@ void Game::run() {
         while (window_.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window_.close();
-            StateResponse response = current_state->handleEvent(event);
-            if (response == StateResponse::ChangeState) {
-                current_state->disable();
-                if (current_state == play_state) {
-                    current_state = menu_state;
-                } else {
-                    current_state = play_state;
-                }
-                current_state->enable();
-            } else if (response == StateResponse::CloseWindow) {
-                window_.close();
-            }
+            gui_.handleEvent(event);
         }
 
-        current_state->runIteration(window_);
+        auto response = current_state->runIteration(window_, gui_);
+        if (response == StateResponse::CloseWindow) {
+            window_.close();
+        } else if (response == StateResponse::ChangeState) {
+            current_state->disable();
+            std::swap(current_state, next_state);
+            current_state->enable();
+        }
 
         window_.display();
     }

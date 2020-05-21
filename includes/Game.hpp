@@ -13,6 +13,8 @@ private:
 
     sf::RenderWindow window_;
 
+    tgui::Gui gui_;
+
 public:
     Game();
 

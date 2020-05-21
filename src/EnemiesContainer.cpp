@@ -41,14 +41,17 @@ void EnemiesContainer::action() {
 }
 
 
-void EnemiesContainer::collision(Spaceship& other) {
+size_t EnemiesContainer::collision(Spaceship& other) {
+    size_t killed_count = 0;
     for (auto it = spaceships_.begin(); it != spaceships_.end();) {
         if (other.isBulletColliding(*it)) {
+            ++killed_count;
             spaceships_.erase(it++);
         } else {
             ++it;
         }
     }
+    return killed_count;
 }
 
 

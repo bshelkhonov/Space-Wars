@@ -16,8 +16,6 @@ private:
 
     tgui::Button::Ptr exit_button_;
 
-    tgui::Gui gui_;
-
     tgui::Font font_;
 
     Background background_;
@@ -26,15 +24,13 @@ private:
 
 public:
 
-    explicit MenuState(sf::RenderWindow&);
+    explicit MenuState(sf::RenderWindow&, tgui::Gui&);
 
     void enable() override;
 
     void disable() override;
 
-    StateResponse handleEvent(sf::Event&) override;
-
-    void runIteration(sf::RenderWindow&) override;
+    StateResponse runIteration(sf::RenderWindow&, tgui::Gui&) override;
 
 };
 

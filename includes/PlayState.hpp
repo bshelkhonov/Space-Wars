@@ -7,6 +7,7 @@
 #include "StateResponse.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <TGUI/TGUI.hpp>
 
 
 class PlayState : public IState {
@@ -24,9 +25,7 @@ private:
 
     void disable() override;
 
-    StateResponse handleEvent(sf::Event&) override;
-
-    void runIteration(sf::RenderWindow&) override;
+    StateResponse runIteration(sf::RenderWindow&, tgui::Gui&) override;
 
 };
 

@@ -13,9 +13,7 @@ public:
 
     virtual void disable() = 0;
 
-    virtual StateResponse handleEvent(sf::Event&) = 0;
-
-    virtual void runIteration(sf::RenderWindow&) = 0;
+    virtual StateResponse runIteration(sf::RenderWindow&, tgui::Gui&) = 0;
 };
 
 

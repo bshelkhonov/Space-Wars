@@ -4,9 +4,9 @@
 
 #include <cassert>
 
-MenuState::MenuState(sf::RenderWindow& window) : start_button_(tgui::Button::create("Start")),
-                                                 exit_button_(tgui::Button::create("Exit")),
-                                                 gui_(window), response_(StateResponse::None) {
+MenuState::MenuState(sf::RenderWindow& window, tgui::Gui& gui) : start_button_(tgui::Button::create("Start")),
+                                                                 exit_button_(tgui::Button::create("Exit")),
+                                                                 response_(StateResponse::None) {
     start_button_->setSize(BUTTON_SIZE.x, BUTTON_SIZE.y);
     start_button_->setPosition(START_BUTTON_POS.x, START_BUTTON_POS.y);
     start_button_->setInheritedFont(font_);
@@ -19,8 +19,8 @@ MenuState::MenuState(sf::RenderWindow& window) : start_button_(tgui::Button::cre
     exit_button_->setTextSize(FONT_SIZE);
     exit_button_->connect("pressed", [this]() { response_ = StateResponse::CloseWindow; });
 
-    gui_.add(start_button_);
-    gui_.add(exit_button_);
+    gui.add(start_button_);
+    gui.add(exit_button_);
 }
 
 
@@ -29,25 +29,21 @@ void MenuState::enable() {
     exit_button_->showWithEffect(tgui::ShowAnimationType::Fade, sf::seconds(0.1));
     start_button_->setVisible(true);
     exit_button_->setVisible(true);
+    response_ = StateResponse::None;
 }
 
 
 void MenuState::disable() {
     start_button_->hideWithEffect(tgui::ShowAnimationType::Fade, sf::seconds(0.1));
     exit_button_->hideWithEffect(tgui::ShowAnimationType::Fade, sf::seconds(0.1));
-}
-
-
-StateResponse MenuState::handleEvent(sf::Event& event) {
     response_ = StateResponse::None;
-    gui_.handleEvent(event);
-    return response_;
 }
 
 
-void MenuState::runIteration(sf::RenderWindow& window) {
+StateResponse MenuState::runIteration(sf::RenderWindow& window, tgui::Gui& gui) {
     background_.draw(window);
-    gui_.draw();
+    gui.draw();
+    return response_;
 }
 
 

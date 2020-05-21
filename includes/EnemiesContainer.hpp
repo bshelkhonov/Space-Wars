@@ -30,7 +30,7 @@ public:
 
     void action();
 
-    void collision(Spaceship&);
+    size_t collision(Spaceship&);
 
     [[nodiscard]] std::list<Spaceship>::const_iterator begin() const;
 
