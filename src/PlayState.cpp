@@ -68,8 +68,10 @@ void PlayState::handleEvent(const sf::Event& event) {
 
 StateResponse PlayState::runIteration(sf::RenderWindow& window) {
     auto response = current_substate_->runIteration(window);
-    if (response == StateResponse::Pause || response == StateResponse::Unpause)
+    if (response == StateResponse::Pause || response == StateResponse::Unpause) {
         changeState_();
+        response = StateResponse::None;
+    }
     return response;
 }
 
