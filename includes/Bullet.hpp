@@ -13,8 +13,6 @@ class Bullet : public IDrawable {
 private:
     sf::Sprite sprite_;
 
-    sf::Clock clock_;
-
     std::shared_ptr<IObjectMover> mover_;
 
 public:
@@ -33,6 +31,10 @@ public:
     bool isSpriteColliding(const IDrawable&) override;
 
     void move();
+
+    void pause();
+
+    void unpause();
 
     void draw(sf::RenderWindow&) override;
 

@@ -13,7 +13,7 @@ private:
 
     static std::shared_ptr<Spaceship> player_spaceship_;
 
-    static void load_sprite_();
+    static void loadSprite_();
 
     static void create_();
 
@@ -21,6 +21,10 @@ public:
     static Spaceship& get();
 
     static bool collisionWithEnemy(const EnemiesContainer&);
+
+    static void pause();
+
+    static void unpause();
 
     static void destroy();
 };

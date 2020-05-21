@@ -12,21 +12,25 @@ private:
 
     sf::Clock clock_;
 
-    void move_up_(IDrawable&) const;
+    void moveUp_(IDrawable&) const;
 
-    void move_down_(IDrawable&) const;
+    void moveDown_(IDrawable&) const;
 
-    void move_left_(IDrawable&) const;
+    void moveLeft_(IDrawable&) const;
 
-    void move_right_(IDrawable&) const;
+    void moveRight_(IDrawable&) const;
 
-    [[nodiscard]] float get_current_time_() const;
+    [[nodiscard]] float getCurrentTime_() const;
 
-    void update_clock_();
+    void updateClock_();
 
 public:
 
     void move(IDrawable&) override;
+
+    void pause() {};
+
+    void unpause();
 };
 
 #endif //SPACE_WARS_PLAYERMOVER_HPP

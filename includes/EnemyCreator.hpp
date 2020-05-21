@@ -13,7 +13,7 @@ private:
 
     std::vector<sf::Sprite> sprites_;
 
-    Spaceship get_random_enemy_();
+    Spaceship getRandomEnemy();
 
 public:
     EnemyCreator();

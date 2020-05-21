@@ -18,7 +18,7 @@ StockPlayerCartridgeBuilder::~StockPlayerCartridgeBuilder() {
 }
 
 
-void StockPlayerCartridgeBuilder::create_cartridge() {
+void StockPlayerCartridgeBuilder::createCartridge() {
     cartridge_.reset(new Cartridge(1));
 }
 

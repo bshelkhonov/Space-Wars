@@ -21,6 +21,8 @@ public:
     explicit EnemyMover(const sf::Vector2f&);
 
     void move(IDrawable&) override;
+
+    void unpause();
 };
 
 

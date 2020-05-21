@@ -14,7 +14,7 @@ private:
 
     std::shared_ptr<ICartridgeBuilder> builder_;
 
-    Cartridge create_bullet_();
+    Cartridge createBullet_();
 
 public:
     PlayerGun();

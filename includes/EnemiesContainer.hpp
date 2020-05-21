@@ -18,9 +18,9 @@ private:
 
     EnemyCreator enemy_creator_;
 
-    void spawn_enemies_();
+    void spawnEnemies_();
 
-    void destroy_far_enemies_();
+    void destroyFarEnemies_();
 
 public:
 
@@ -30,7 +30,11 @@ public:
 
     void action();
 
-    void collision(Spaceship&);
+    void pause();
+
+    void unpause();
+
+    size_t collision(Spaceship&);
 
     [[nodiscard]] std::list<Spaceship>::const_iterator begin() const;
 

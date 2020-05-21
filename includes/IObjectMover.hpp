@@ -11,6 +11,8 @@ class IObjectMover {
 public:
     virtual void move(IDrawable&) = 0;
 
+    virtual void unpause() = 0;
+
     virtual ~IObjectMover() = default;
 };
 

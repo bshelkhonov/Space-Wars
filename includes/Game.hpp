@@ -3,32 +3,31 @@
 
 
 #include "Background.hpp"
+#include "IState.hpp"
+#include "PlayState.hpp"
+#include "MenuState.hpp"
+
 #include <SFML/Graphics.hpp>
 #include <TGUI/TGUI.hpp>
-#include <list>
+#include <memory>
 
 
 class Game {
 private:
-    enum class GAME_STATE {
-        IN_MENU, PLAY
-    };
 
     sf::RenderWindow window_;
 
     tgui::Gui gui_;
 
-    tgui::Font font_;
+    void startGame_();
 
-    GAME_STATE game_state_;
+    void finishGame_();
 
-    Background background_;
+    std::shared_ptr<PlayState> play_state_;
 
-    sf::Clock clock_;
+    std::shared_ptr<MenuState> menu_state_;
 
-    void play_();
-
-    void menu_();
+    std::shared_ptr<IState> current_state_;
 
 public:
     Game();

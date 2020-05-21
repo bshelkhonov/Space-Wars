@@ -16,7 +16,7 @@ public:
 
     ~StockPlayerCartridgeBuilder() override;
 
-    void create_cartridge() override;
+    void createCartridge() override;
 
     void setSprite() override;
 
