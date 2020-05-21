@@ -87,7 +87,7 @@ set(SOURCES
         includes/EnemyCreator.hpp src/EnemyCreator includes/EnemiesContainer.hpp src/EnemiesContainer.cpp
         src/EnemyMover.cpp includes/EnemyMover.hpp includes/Randomizer.hpp src/Randomizer.cpp includes/Collision.hpp
         src/Collision.cpp includes/PlayState.hpp src/PlayState.cpp includes/IState.hpp includes/MenuState.hpp
-        src/MenuState.cpp includes/StateResponse.hpp)
+        src/MenuState.cpp includes/StateResponse.hpp includes/RunningSubstate.hpp src/RunningSubstate.cpp includes/PauseSubstate.hpp src/PauseSubstate.cpp)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
 add_executable(RunTest ${SOURCES} tests/RunTest.cpp tests/TestIDrawables.hpp)

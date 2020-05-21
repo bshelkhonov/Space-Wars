@@ -3,6 +3,8 @@
 
 
 #include "Background.hpp"
+#include "IState.hpp"
+
 #include <SFML/Graphics.hpp>
 #include <TGUI/TGUI.hpp>
 #include <list>

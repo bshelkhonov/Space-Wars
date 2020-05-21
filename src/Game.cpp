@@ -16,6 +16,7 @@ Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars",
 Game::~Game() = default;
 
 
+
 void Game::run() {
     std::shared_ptr<IState> play_state = std::dynamic_pointer_cast<IState>(std::make_shared<PlayState>(gui_));
     std::shared_ptr<IState> menu_state = std::dynamic_pointer_cast<IState>(std::make_shared<MenuState>(gui_));
@@ -37,16 +38,24 @@ void Game::run() {
         }
 
         auto response = current_state->runIteration(window_);
-        if (response == StateResponse::CloseWindow) {
-            window_.close();
-        } else if (response == StateResponse::ChangeState) {
-            current_state->disable();
-            std::swap(current_state, next_state);
-            current_state->enable();
+        if (response != StateResponse::None) {
+            switch (response) {
+                case StateResponse::Start:
+                case StateResponse::Finish:
+                    current_state->disable();
+                    swap(current_state, next_state);
+                    current_state->enable();
+                    break;
+                case StateResponse::CloseWindow:
+                    window_.close();
+                default:
+                    break;
+            }
         }
 
         gui_.draw();
         window_.display();
     }
 }
+
 

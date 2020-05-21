@@ -4,8 +4,11 @@
 
 enum class StateResponse {
     None,
+    Start,
     CloseWindow,
-    ChangeState
+    Pause,
+    Unpause,
+    Finish
 };
 
 

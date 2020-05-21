@@ -1,6 +1,9 @@
 #include "PlayState.hpp"
 #include "PlayerSpaceship.hpp"
 #include "Settings.hpp"
+#include "RunningSubstate.hpp"
+#include "PauseSubstate.hpp"
+
 #include <SFML/Graphics.hpp>
 
 
@@ -10,7 +13,7 @@ PlayState::PlayState(tgui::Gui& gui) : score_label_(tgui::Label::create()),
                                                std::dynamic_pointer_cast<IState>(
                                                        std::make_shared<RunningSubstate>(*this))),
                                        next_substate_(std::dynamic_pointer_cast<IState>(
-                                               std::make_shared<PauseSubstate>(*this))),
+                                               std::make_shared<PauseSubstate>(*this, gui))),
                                        response_(StateResponse::None), score_(0),
                                        score_prefix_("Your score: ") {
     score_renderer_.setTextColor(tgui::Color::White);
@@ -18,6 +21,8 @@ PlayState::PlayState(tgui::Gui& gui) : score_label_(tgui::Label::create()),
     score_label_->setTextSize(SCORE_LABEL_FONT_SIZE);
     score_label_->setRenderer(score_renderer_.getData());
     gui.add(score_label_);
+    next_substate_->disable();
+    current_substate_->enable();
 }
 
 
@@ -41,60 +46,23 @@ void PlayState::handleEvent(const sf::Event& event) {
         if (event.key.code == sf::Keyboard::Escape) {
             current_substate_->disable();
             std::swap(current_substate_, next_substate_);
-            next_substate_->enable();
+            current_substate_->enable();
         }
     }
+    current_substate_->handleEvent(event);
 }
 
 
 StateResponse PlayState::runIteration(sf::RenderWindow& window) {
-    return current_substate_->runIteration(window);
+    auto response = current_substate_->runIteration(window);
+    if (response == StateResponse::Pause || response == StateResponse::Unpause) {
+        current_substate_->disable();
+        swap(current_substate_, next_substate_);
+        current_substate_->enable();
+    }
+    return response;
 }
 
 
-PlayState::PauseSubstate::PauseSubstate(PlayState& play_state) : play_state_(play_state) {}
 
-
-void PlayState::PauseSubstate::enable() {
-    PlayerSpaceship::get().pause();
-    play_state_.enemies_.pause();
-}
-
-
-void PlayState::PauseSubstate::disable() {
-    PlayerSpaceship::unpause();
-    play_state_.enemies_.unpause();
-}
-
-
-StateResponse PlayState::PauseSubstate::runIteration(sf::RenderWindow& window) {
-    window.clear();
-    play_state_.background_.draw(window);
-    PlayerSpaceship::get().draw(window);
-    play_state_.enemies_.draw(window);
-    return play_state_.response_;
-}
-
-
-PlayState::RunningSubstate::RunningSubstate(PlayState& play_state) : play_state_(play_state) {}
-
-
-StateResponse PlayState::RunningSubstate::runIteration(sf::RenderWindow& window) {
-    PlayerSpaceship::get().action();
-    play_state_.enemies_.action();
-
-    if (PlayerSpaceship::collisionWithEnemy(play_state_.enemies_))
-        play_state_.response_ = StateResponse::ChangeState;
-
-    play_state_.score_ += play_state_.enemies_.collision(PlayerSpaceship::get());
-    play_state_.score_label_->setText(play_state_.score_prefix_ + std::to_string(play_state_.score_));
-
-    play_state_.background_.move();
-
-    window.clear();
-    play_state_.background_.draw(window);
-    PlayerSpaceship::get().draw(window);
-    play_state_.enemies_.draw(window);
-    return play_state_.response_;
-}
 

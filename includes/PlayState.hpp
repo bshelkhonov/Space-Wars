@@ -15,41 +15,9 @@
 class PlayState : public IState {
 private:
 
-    class PauseSubstate : public IState {
-    private:
+    class PauseSubstate;
 
-        PlayState& play_state_;
-
-    public:
-
-        explicit PauseSubstate(PlayState&);
-
-        void enable() override;
-
-        void disable() override;
-
-        void handleEvent(const sf::Event&) override {};
-
-        StateResponse runIteration(sf::RenderWindow&) override;
-    };
-
-    class RunningSubstate : public IState {
-    private:
-
-        PlayState& play_state_;
-
-    public:
-
-        explicit RunningSubstate(PlayState&);
-
-        void enable() override {};
-
-        void disable() override {};
-
-        void handleEvent(const sf::Event&) override {};
-
-        StateResponse runIteration(sf::RenderWindow&) override;
-    };
+    class RunningSubstate;
 
 
     tgui::Label::Ptr score_label_;

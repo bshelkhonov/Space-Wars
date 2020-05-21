@@ -11,7 +11,7 @@ MenuState::MenuState(tgui::Gui& gui) : start_button_(tgui::Button::create("Start
     start_button_->setPosition(START_BUTTON_POS.x, START_BUTTON_POS.y);
     start_button_->setInheritedFont(font_);
     start_button_->setTextSize(BUTTON_FONT_SIZE);
-    start_button_->connect("pressed", [this]() { response_ = StateResponse::ChangeState; });
+    start_button_->connect("pressed", [this]() { response_ = StateResponse::Start; });
 
     exit_button_->setSize(BUTTON_SIZE.x, BUTTON_SIZE.y);
     exit_button_->setPosition(EXIT_BUTTON_POS.x, EXIT_BUTTON_POS.y);
