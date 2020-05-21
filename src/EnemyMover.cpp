@@ -15,3 +15,8 @@ void EnemyMover::move(IDrawable& enemy) {
     enemy.move(velocity_ * delta_time);
 }
 
+
+void EnemyMover::unpause() {
+    clock_.restart();
+}
+

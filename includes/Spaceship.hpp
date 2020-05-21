@@ -16,8 +16,6 @@ class Spaceship : public IDrawable {
 private:
     sf::Sprite sprite_;
 
-    sf::Clock clock_;
-
     std::shared_ptr<IGun> gun_;
 
     std::shared_ptr<IObjectMover> mover_;
@@ -50,6 +48,10 @@ public:
     void draw(sf::RenderWindow&) override;
 
     void move(const sf::Vector2f&) override;
+
+    void pause();
+
+    void unpause();
 
     bool isBulletColliding(const IDrawable&);
 

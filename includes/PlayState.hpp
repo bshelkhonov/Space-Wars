@@ -15,9 +15,50 @@
 class PlayState : public IState {
 private:
 
+    class PauseSubstate : public IState {
+    private:
+
+        PlayState& play_state_;
+
+    public:
+
+        explicit PauseSubstate(PlayState&);
+
+        void enable() override;
+
+        void disable() override;
+
+        void handleEvent(const sf::Event&) override {};
+
+        StateResponse runIteration(sf::RenderWindow&) override;
+    };
+
+    class RunningSubstate : public IState {
+    private:
+
+        PlayState& play_state_;
+
+    public:
+
+        explicit RunningSubstate(PlayState&);
+
+        void enable() override {};
+
+        void disable() override {};
+
+        void handleEvent(const sf::Event&) override {};
+
+        StateResponse runIteration(sf::RenderWindow&) override;
+    };
+
+
     tgui::Label::Ptr score_label_;
 
-    std::shared_ptr<tgui::LabelRenderer> score_renderer_;
+    tgui::LabelRenderer score_renderer_;
+
+    std::shared_ptr<IState> current_substate_;
+
+    std::shared_ptr<IState> next_substate_;
 
     EnemiesContainer enemies_;
 
@@ -37,7 +78,12 @@ public:
 
     void disable() override;
 
+    void handleEvent(const sf::Event&) override;
+
     StateResponse runIteration(sf::RenderWindow&) override;
+
+private:
+
 
 };
 

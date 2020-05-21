@@ -42,6 +42,16 @@ void Bullet::move(const sf::Vector2f& movement) {
 }
 
 
+void Bullet::pause() {
+
+}
+
+
+void Bullet::unpause() {
+    mover_->unpause();
+}
+
+
 sf::Vector2f Bullet::getPosition() const {
     return sprite_.getPosition();
 }

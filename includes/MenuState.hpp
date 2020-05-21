@@ -30,6 +30,8 @@ public:
 
     void disable() override;
 
+    void handleEvent(const sf::Event&) override;
+
     StateResponse runIteration(sf::RenderWindow&) override;
 
 };

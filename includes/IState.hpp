@@ -13,6 +13,8 @@ public:
 
     virtual void disable() = 0;
 
+    virtual void handleEvent(const sf::Event&) = 0;
+
     virtual StateResponse runIteration(sf::RenderWindow&) = 0;
 };
 

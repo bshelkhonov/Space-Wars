@@ -22,6 +22,10 @@ public:
 
     static bool collisionWithEnemy(const EnemiesContainer&);
 
+    static void pause();
+
+    static void unpause();
+
     static void destroy();
 };
 

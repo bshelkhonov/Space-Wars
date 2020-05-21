@@ -30,6 +30,10 @@ public:
 
     void action();
 
+    void pause();
+
+    void unpause();
+
     size_t collision(Spaceship&);
 
     [[nodiscard]] std::list<Spaceship>::const_iterator begin() const;

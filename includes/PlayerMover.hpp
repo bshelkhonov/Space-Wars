@@ -27,6 +27,10 @@ private:
 public:
 
     void move(IDrawable&) override;
+
+    void pause() {};
+
+    void unpause();
 };
 
 #endif //SPACE_WARS_PLAYERMOVER_HPP

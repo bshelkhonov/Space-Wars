@@ -46,9 +46,22 @@ bool PlayerSpaceship::collisionWithEnemy(const EnemiesContainer& enemies) {
 }
 
 
+void PlayerSpaceship::pause() {
+    get().pause();
+}
+
+
+void PlayerSpaceship::unpause() {
+    get().unpause();
+}
+
+
 void PlayerSpaceship::destroy() {
     player_spaceship_.reset();
     delete sprite_.getTexture();
 }
+
+
+
 
 

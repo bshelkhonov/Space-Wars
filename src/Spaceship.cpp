@@ -70,6 +70,18 @@ void Spaceship::move(const sf::Vector2f& movement) {
 }
 
 
+void Spaceship::pause() {
+
+}
+
+
+void Spaceship::unpause() {
+    for (auto& bullet : bullets_)
+        bullet.unpause();
+    mover_->unpause();
+}
+
+
 void Spaceship::draw(sf::RenderWindow& window) {
     window.draw(sprite_);
     for (auto& bullet : bullets_)
@@ -108,6 +120,7 @@ bool Spaceship::isBulletColliding(const IDrawable& other) {
 bool Spaceship::isSpriteColliding(const IDrawable& other) {
     return Collision::PixelPerfectTest(getSprite(), other.getSprite());
 }
+
 
 
 

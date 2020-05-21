@@ -40,11 +40,15 @@ void MenuState::disable() {
 }
 
 
+void MenuState::handleEvent(const sf::Event&) {
+
+}
+
+
 StateResponse MenuState::runIteration(sf::RenderWindow& window) {
     background_.draw(window);
     return response_;
 }
-
 
 
 

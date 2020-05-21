@@ -25,7 +25,6 @@ void EnemiesContainer::destroyFarEnemies_() {
 }
 
 
-
 void EnemiesContainer::draw(sf::RenderWindow& window) {
     for (auto& spaceship : spaceships_)
         spaceship.draw(window);
@@ -71,6 +70,18 @@ std::list<Spaceship>::const_iterator EnemiesContainer::begin() const {
 
 std::list<Spaceship>::const_iterator EnemiesContainer::end() const {
     return spaceships_.end();
+}
+
+
+void EnemiesContainer::pause() {
+
+}
+
+
+void EnemiesContainer::unpause() {
+    clock_.restart();
+    for (auto& spaceship : spaceships_)
+        spaceship.unpause();
 }
 
 

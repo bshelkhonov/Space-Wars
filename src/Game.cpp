@@ -32,6 +32,7 @@ void Game::run() {
         while (window_.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window_.close();
+            current_state->handleEvent(event);
             gui_.handleEvent(event);
         }
 

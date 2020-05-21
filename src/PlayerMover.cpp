@@ -58,3 +58,8 @@ void PlayerMover::move(IDrawable& player_spaceship) {
     updateClock_();
 }
 
+
+void PlayerMover::unpause() {
+    clock_.restart();
+}
+

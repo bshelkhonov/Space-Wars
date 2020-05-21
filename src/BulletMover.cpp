@@ -9,3 +9,8 @@ void BulletMover::move(IDrawable& bullet) {
     clock_.restart();
 }
 
+
+void BulletMover::unpause() {
+    clock_.restart();
+}
+

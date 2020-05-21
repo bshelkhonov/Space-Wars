@@ -16,6 +16,8 @@ public:
     explicit BulletMover(const sf::Vector2f&);
 
     void move(IDrawable&) override;
+
+    void unpause();
 };
 
 
