@@ -17,11 +17,14 @@ Game::~Game() = default;
 
 
 void Game::run() {
-    std::shared_ptr<IState> play_state = std::dynamic_pointer_cast<IState>(std::make_shared<PlayState>());
-    std::shared_ptr<IState> menu_state = std::dynamic_pointer_cast<IState>(std::make_shared<MenuState>(window_, gui_));
+    std::shared_ptr<IState> play_state = std::dynamic_pointer_cast<IState>(std::make_shared<PlayState>(gui_));
+    std::shared_ptr<IState> menu_state = std::dynamic_pointer_cast<IState>(std::make_shared<MenuState>(gui_));
 
     std::shared_ptr<IState> current_state = menu_state;
     std::shared_ptr<IState> next_state = play_state;
+
+    current_state->enable();
+    next_state->disable();
 
     while (window_.isOpen()) {
         sf::Event event{};
@@ -32,7 +35,7 @@ void Game::run() {
             gui_.handleEvent(event);
         }
 
-        auto response = current_state->runIteration(window_, gui_);
+        auto response = current_state->runIteration(window_);
         if (response == StateResponse::CloseWindow) {
             window_.close();
         } else if (response == StateResponse::ChangeState) {
@@ -41,6 +44,7 @@ void Game::run() {
             current_state->enable();
         }
 
+        gui_.draw();
         window_.display();
     }
 }

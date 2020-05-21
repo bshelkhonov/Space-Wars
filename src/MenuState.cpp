@@ -4,19 +4,19 @@
 
 #include <cassert>
 
-MenuState::MenuState(sf::RenderWindow& window, tgui::Gui& gui) : start_button_(tgui::Button::create("Start")),
-                                                                 exit_button_(tgui::Button::create("Exit")),
-                                                                 response_(StateResponse::None) {
+MenuState::MenuState(tgui::Gui& gui) : start_button_(tgui::Button::create("Start")),
+                                       exit_button_(tgui::Button::create("Exit")),
+                                       font_(FONT_PATH), response_(StateResponse::None) {
     start_button_->setSize(BUTTON_SIZE.x, BUTTON_SIZE.y);
     start_button_->setPosition(START_BUTTON_POS.x, START_BUTTON_POS.y);
     start_button_->setInheritedFont(font_);
-    start_button_->setTextSize(FONT_SIZE);
+    start_button_->setTextSize(BUTTON_FONT_SIZE);
     start_button_->connect("pressed", [this]() { response_ = StateResponse::ChangeState; });
 
     exit_button_->setSize(BUTTON_SIZE.x, BUTTON_SIZE.y);
     exit_button_->setPosition(EXIT_BUTTON_POS.x, EXIT_BUTTON_POS.y);
     exit_button_->setInheritedFont(font_);
-    exit_button_->setTextSize(FONT_SIZE);
+    exit_button_->setTextSize(BUTTON_FONT_SIZE);
     exit_button_->connect("pressed", [this]() { response_ = StateResponse::CloseWindow; });
 
     gui.add(start_button_);
@@ -40,9 +40,8 @@ void MenuState::disable() {
 }
 
 
-StateResponse MenuState::runIteration(sf::RenderWindow& window, tgui::Gui& gui) {
+StateResponse MenuState::runIteration(sf::RenderWindow& window) {
     background_.draw(window);
-    gui.draw();
     return response_;
 }
 

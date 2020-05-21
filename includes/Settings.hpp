@@ -60,7 +60,10 @@ const sf::Vector2f START_BUTTON_POS = {
 const sf::Vector2f EXIT_BUTTON_POS = {
         (SCREEN_WIDTH - BUTTON_SIZE.x) / 2, SCREEN_HEIGHT/ 2
 };
-const uint32_t FONT_SIZE = 100;
-
+const uint32_t BUTTON_FONT_SIZE = 100;
+const uint32_t SCORE_LABEL_FONT_SIZE = 20;
+const sf::Vector2f SCORE_LABEL_POS = {
+        SCREEN_WIDTH - 200, 0
+};
 
 #endif //SPACE_WARS_SETTINGS_HPP

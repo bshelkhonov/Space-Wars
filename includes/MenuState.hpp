@@ -24,13 +24,13 @@ private:
 
 public:
 
-    explicit MenuState(sf::RenderWindow&, tgui::Gui&);
+    explicit MenuState(tgui::Gui&);
 
     void enable() override;
 
     void disable() override;
 
-    StateResponse runIteration(sf::RenderWindow&, tgui::Gui&) override;
+    StateResponse runIteration(sf::RenderWindow&) override;
 
 };
 

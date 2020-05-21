@@ -9,9 +9,15 @@
 #include <SFML/Graphics.hpp>
 #include <TGUI/TGUI.hpp>
 
+#include <memory>
+
 
 class PlayState : public IState {
-public:
+private:
+
+    tgui::Label::Ptr score_label_;
+
+    std::shared_ptr<tgui::LabelRenderer> score_renderer_;
 
     EnemiesContainer enemies_;
 
@@ -19,13 +25,19 @@ public:
 
     StateResponse response_;
 
-private:
+    size_t score_;
+
+    const std::string score_prefix_;
+
+public:
+
+    explicit PlayState(tgui::Gui&);
 
     void enable() override;
 
     void disable() override;
 
-    StateResponse runIteration(sf::RenderWindow&, tgui::Gui&) override;
+    StateResponse runIteration(sf::RenderWindow&) override;
 
 };
 
