@@ -4,12 +4,12 @@
 ICartridgeBuilder::ICartridgeBuilder() : cartridge_() {}
 
 
-void ICartridgeBuilder::create_cartridge() {
+void ICartridgeBuilder::createCartridge() {
     cartridge_.reset(new Cartridge());
 };
 
 
-std::shared_ptr<Cartridge> ICartridgeBuilder::get_cartridge() {
+std::shared_ptr<Cartridge> ICartridgeBuilder::getCartridge() {
     return cartridge_;
 }
 

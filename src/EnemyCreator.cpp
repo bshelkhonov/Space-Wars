@@ -16,7 +16,7 @@ EnemyCreator::EnemyCreator() {
 }
 
 
-Spaceship EnemyCreator::get_random_enemy_() {
+Spaceship EnemyCreator::getRandomEnemy() {
     Spaceship spaceship;
     spaceship.setSprite(sprites_[random() % sprites_.size()]);
     spaceship.setGun(nullptr);
@@ -35,7 +35,7 @@ std::vector<Spaceship> EnemyCreator::get() {
     std::vector<Spaceship> result;
 
     for (uint32_t i = 0; i < enemies_num; ++i) {
-        result.push_back(get_random_enemy_());
+        result.push_back(getRandomEnemy());
         result.back().move(
                 {i * DISTANCE_BETWEEN_ENEMIES, Randomizer::randint(0, 300) * (Randomizer::randint(0, 1) ? -1.f : 1.f)});
     }

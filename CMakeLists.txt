@@ -37,7 +37,6 @@ configure_file(sfml_install.in sfml-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
         RESULT_VARIABLE result
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/sfml-download)
-
 if (result)
     message(FATAL_ERROR "CMake step for sfml failed: ${result}")
 endif ()
@@ -52,9 +51,7 @@ endif ()
 set(sfml_force_shared_crt ON CACHE BOOL "" FORCE)
 
 set(SFML_DIR ${CMAKE_CURRENT_BINARY_DIR}/sfml-build)
-add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/sfml-src
-        ${CMAKE_CURRENT_BINARY_DIR}/sfml-build
-        EXCLUDE_FROM_ALL)
+add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/sfml-src)
 
 
 # TGUI
@@ -62,7 +59,6 @@ configure_file(tgui_install.in tgui-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
         RESULT_VARIABLE result
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tgui-download)
-
 if (result)
     message(FATAL_ERROR "CMake step for tgui failed: ${result}")
 endif ()
@@ -77,12 +73,7 @@ endif ()
 set(tgui_force_shared_crt ON CACHE BOOL "" FORCE)
 
 set(TGUI_DIR ${CMAKE_CURRENT_BINARY_DIR}/tgui-build)
-add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/tgui-src
-        ${CMAKE_CURRENT_BINARY_DIR}/tgui-build
-        EXCLUDE_FROM_ALL)
-#find_package(TGUI PATHS ${CMAKE_CURRENT_BINARY_DIR}/tgui-src REQUIRED)
-include_directories(${CMAKE_CURRENT_BINARY_DIR}/tgui-src/include)
-
+add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/tgui-src)
 
 include_directories(includes)
 
@@ -95,7 +86,8 @@ set(SOURCES
         includes/Background.hpp src/Background.cpp includes/BulletMover.hpp src/BulletMover.cpp
         includes/EnemyCreator.hpp src/EnemyCreator includes/EnemiesContainer.hpp src/EnemiesContainer.cpp
         src/EnemyMover.cpp includes/EnemyMover.hpp includes/Randomizer.hpp src/Randomizer.cpp includes/Collision.hpp
-        src/Collision.cpp)
+        src/Collision.cpp includes/PlayState.hpp src/PlayState.cpp includes/IState.hpp includes/MenuState.hpp
+        src/MenuState.cpp includes/StateResponse.hpp)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
 add_executable(RunTest ${SOURCES} tests/RunTest.cpp tests/TestIDrawables.hpp)

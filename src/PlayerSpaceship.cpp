@@ -9,7 +9,7 @@ std::shared_ptr<Spaceship> PlayerSpaceship::player_spaceship_ = nullptr;
 sf::Sprite PlayerSpaceship::sprite_ = sf::Sprite();
 
 
-void PlayerSpaceship::load_sprite_() {
+void PlayerSpaceship::loadSprite_() {
     auto texture = new sf::Texture();
     texture->loadFromFile(PLAYER_FILE);
     PlayerSpaceship::sprite_.setTexture(*texture);
@@ -20,7 +20,7 @@ void PlayerSpaceship::load_sprite_() {
 
 void PlayerSpaceship::create_() {
     player_spaceship_ = std::make_shared<Spaceship>();
-    load_sprite_();
+    loadSprite_();
     player_spaceship_->setSprite(PlayerSpaceship::sprite_);
     player_spaceship_->setMover(new PlayerMover());
     player_spaceship_->setGun(new PlayerGun());

@@ -13,9 +13,9 @@ protected:
 public:
     ICartridgeBuilder();
 
-    virtual void create_cartridge();
+    virtual void createCartridge();
 
-    std::shared_ptr<Cartridge> get_cartridge();
+    std::shared_ptr<Cartridge> getCartridge();
 
     virtual void setSprite() = 0;
     virtual void setRotation() {};

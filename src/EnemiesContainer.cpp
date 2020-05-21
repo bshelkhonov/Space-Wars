@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-void EnemiesContainer::spawn_enemies_() {
+void EnemiesContainer::spawnEnemies_() {
     if (clock_.getElapsedTime().asSeconds() >= MIN_DELAY_BETWEEN_SPAWN && Randomizer::randint(0, 1) == 0) {
         auto new_enemies = enemy_creator_.get();
 
@@ -14,7 +14,7 @@ void EnemiesContainer::spawn_enemies_() {
 }
 
 
-void EnemiesContainer::destroy_far_enemies_() {
+void EnemiesContainer::destroyFarEnemies_() {
     for (auto it = spaceships_.begin(); it != spaceships_.end(); ) {
         if (it->getPosition().x <= -X_BORDER) {
             spaceships_.erase(it++);
@@ -36,8 +36,8 @@ void EnemiesContainer::action() {
     for (auto& spaceship : spaceships_)
         spaceship.action();
 
-    spawn_enemies_();
-    destroy_far_enemies_();
+    spawnEnemies_();
+    destroyFarEnemies_();
 }
 
 

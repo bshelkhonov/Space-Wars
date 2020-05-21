@@ -10,25 +10,8 @@
 
 class Game {
 private:
-    enum class GAME_STATE {
-        IN_MENU, PLAY
-    };
 
     sf::RenderWindow window_;
-
-    tgui::Gui gui_;
-
-    tgui::Font font_;
-
-    GAME_STATE game_state_;
-
-    Background background_;
-
-    sf::Clock clock_;
-
-    void play_();
-
-    void menu_();
 
 public:
     Game();

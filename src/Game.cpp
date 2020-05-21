@@ -1,99 +1,49 @@
 #include "Game.hpp"
 #include "Settings.hpp"
-#include "PlayerSpaceship.hpp"
-#include "EnemiesContainer.hpp"
+#include "IState.hpp"
+#include "PlayState.hpp"
+#include "MenuState.hpp"
+
 #include <SFML/Graphics.hpp>
-#include <TGUI/TGUI.hpp>
+
+#include <memory>
 
 
-Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close),
-               gui_(window_), font_(tgui::Font(FONT_PATH)), game_state_(GAME_STATE::IN_MENU) {}
+Game::Game() : window_(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Space Wars", sf::Style::Close) {}
 
 
 Game::~Game() = default;
 
 
-void Game::play_() {
-    EnemiesContainer enemies;
-    while (game_state_ == GAME_STATE::PLAY && window_.isOpen()) {
-        clock_.restart();
-        sf::Event event{};
+void Game::run() {
+    std::shared_ptr<IState> play_state = std::dynamic_pointer_cast<IState>(std::make_shared<PlayState>());
+    std::shared_ptr<IState> menu_state = std::dynamic_pointer_cast<IState>(std::make_shared<MenuState>(window_));
 
-
-        while (window_.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window_.close();
-            gui_.handleEvent(event);
-        }
-
-        PlayerSpaceship::get().action();
-        enemies.action();
-
-
-        if (PlayerSpaceship::collisionWithEnemy(enemies))
-            game_state_ = GAME_STATE::IN_MENU;
-        enemies.collision(PlayerSpaceship::get());
-
-
-        background_.move();
-
-        window_.clear();
-        background_.draw(window_);
-        PlayerSpaceship::get().draw(window_);
-        enemies.draw(window_);
-
-        gui_.draw();
-        window_.display();
-    }
-    PlayerSpaceship::destroy();
-}
-
-
-void Game::menu_() {
-
-    auto start_button = tgui::Button::create("Start");
-    auto exit_button = tgui::Button::create("Exit");
-
-    start_button->setSize(BUTTON_SIZE.x, BUTTON_SIZE.y);
-    start_button->setPosition(START_BUTTON_POS.x, START_BUTTON_POS.y);
-    start_button->setInheritedFont(font_);
-    start_button->setTextSize(FONT_SIZE);
-    start_button->connect("pressed", [&]() { game_state_ = GAME_STATE::PLAY; });
-
-    exit_button->setSize(BUTTON_SIZE.x, BUTTON_SIZE.y);
-    exit_button->setPosition(EXIT_BUTTON_POS.x, EXIT_BUTTON_POS.y);
-    exit_button->setInheritedFont(font_);
-    exit_button->setTextSize(FONT_SIZE);
-    exit_button->connect("pressed", [&]() { window_.close(); });
-
-    gui_.add(start_button);
-    gui_.add(exit_button);
+    std::shared_ptr<IState> current_state = menu_state;
 
     while (window_.isOpen()) {
-        if (game_state_ != GAME_STATE::IN_MENU) {
-            start_button->hideWithEffect(tgui::ShowAnimationType::Fade, sf::seconds(0.1));
-            exit_button->hideWithEffect(tgui::ShowAnimationType::Fade, sf::seconds(0.1));
-            play_();
-            start_button->showWithEffect(tgui::ShowAnimationType::Fade, sf::seconds(0.1));
-            exit_button->showWithEffect(tgui::ShowAnimationType::Fade, sf::seconds(0.1));
-        }
-
         sf::Event event{};
 
         while (window_.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window_.close();
-            gui_.handleEvent(event);
+            StateResponse response = current_state->handleEvent(event);
+            if (response == StateResponse::ChangeState) {
+                current_state->disable();
+                if (current_state == play_state) {
+                    current_state = menu_state;
+                } else {
+                    current_state = play_state;
+                }
+                current_state->enable();
+            } else if (response == StateResponse::CloseWindow) {
+                window_.close();
+            }
         }
 
-        background_.draw(window_);
-        gui_.draw();
+        current_state->runIteration(window_);
+
         window_.display();
     }
-}
-
-
-void Game::run() {
-    menu_();
 }
 

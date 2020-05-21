@@ -18,9 +18,9 @@ private:
 
     EnemyCreator enemy_creator_;
 
-    void spawn_enemies_();
+    void spawnEnemies_();
 
-    void destroy_far_enemies_();
+    void destroyFarEnemies_();
 
 public:
 
