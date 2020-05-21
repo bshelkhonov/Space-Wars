@@ -61,26 +61,26 @@ const sf::Vector2f EXIT_BUTTON_POS = {
         (SCREEN_WIDTH - BUTTON_SIZE.x) / 2, SCREEN_HEIGHT / 2
 };
 const uint32_t BUTTON_FONT_SIZE = 100;
-const uint32_t SCORE_LABEL_FONT_SIZE = 20;
+const uint32_t SCORE_LABEL_FONT_SIZE = 30;
 
 const sf::Vector2f SCORE_LABEL_POS = {
         SCREEN_WIDTH - 200, 0
 };
 const std::string HIGH_SCORE_TEXT = "High score: ";
-const std::string LOSE_TEXT = "YOU LOSE\nSCORE: ";
+const std::string LOSE_TEXT = "YOU LOSE! SCORE: ";
 
 const sf::Vector2f HIGH_SCORE_LABEL_POS = {
-        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2 + 20, 10
+        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2 + 20, 5
 };
 const sf::Vector2f MENU_SCORE_LABEL_POS = {
-        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2 + 20, 70
+        (SCREEN_WIDTH - BUTTON_SIZE.x) / 2 + 20, 60
 };
-const uint32_t SCORE_FONT_SIZE = 40;
+const uint32_t SCORE_FONT_SIZE = 60;
 
 const sf::Vector2f HIGH_SCORE_INGAME_POS = {
         SCREEN_WIDTH - 400, 0
 };
-const uint32_t HIGH_SCORE_INGAME_FONT_SIZE = 20;
+const uint32_t HIGH_SCORE_INGAME_FONT_SIZE = SCORE_LABEL_FONT_SIZE;
 
 
 #endif //SPACE_WARS_SETTINGS_HPP

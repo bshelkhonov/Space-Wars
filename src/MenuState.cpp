@@ -16,11 +16,13 @@ MenuState::MenuState(tgui::Gui& gui)
     last_game_score_label_->setRenderer(label_renderer_.getData());
     last_game_score_label_->setPosition(MENU_SCORE_LABEL_POS);
     last_game_score_label_->setTextSize(SCORE_FONT_SIZE);
+    last_game_score_label_->setInheritedFont(font_);
 
     high_score_label_->setRenderer(label_renderer_.getData());
     high_score_label_->setText(high_score_text_ + "0");
     high_score_label_->setPosition(HIGH_SCORE_LABEL_POS);
-    high_score_label_->setTextSize(40);
+    high_score_label_->setTextSize(SCORE_FONT_SIZE);
+    high_score_label_->setInheritedFont(font_);
 
     start_button_->setSize(BUTTON_SIZE.x, BUTTON_SIZE.y);
     start_button_->setPosition(START_BUTTON_POS.x, START_BUTTON_POS.y);

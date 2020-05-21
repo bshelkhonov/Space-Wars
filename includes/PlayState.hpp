@@ -30,6 +30,8 @@ private:
 
     std::shared_ptr<IState> current_substate_;
 
+    tgui::Font font_;
+
     EnemiesContainer enemies_;
 
     Background background_;

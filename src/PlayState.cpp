@@ -12,13 +12,14 @@ PlayState::PlayState(tgui::Gui& gui)
           score_renderer_(),
           running_substate_(std::dynamic_pointer_cast<IState>(std::make_shared<RunningSubstate>(*this))),
           pause_substate_(std::dynamic_pointer_cast<IState>(std::make_shared<PauseSubstate>(*this, gui))),
-          current_substate_(running_substate_),
+          current_substate_(running_substate_), font_(FONT_PATH),
           response_(StateResponse::None), score_(0),
           score_prefix_("Your score: ") {
     score_renderer_.setTextColor(tgui::Color::White);
     score_label_->setPosition(SCORE_LABEL_POS);
     score_label_->setTextSize(SCORE_LABEL_FONT_SIZE);
     score_label_->setRenderer(score_renderer_.getData());
+    score_label_->setInheritedFont(font_);
     gui.add(score_label_);
 
     pause_substate_->disable();
